@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, 'src/index.jsx'),
+        app: path.resolve(__dirname, 'src/categoryStore.jsx'),
         // 将 第三方依赖（node_modules中的） 单独打包
         vendor: Object.keys(pkg.dependencies)
     },
@@ -16,19 +16,21 @@ module.exports = {
     },
 
     resolve:{
-        extensions: ['*','.js', '.jsx']
+        extensions: ['','.js', '.jsx']
     },
 
     module: {
         loaders: [
-            {test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader'},
+            {test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'loader'},
             { test: /\.less$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss!less') },
             { test: /\.css$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
             { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=img/[name].[chunkhash:8].[ext]' },
             { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000&name=fonts/[name].[chunkhash:8].[ext]'}
         ]
     },
-
+    postcss: [
+        require('autoprefixer') //调用autoprefixer插件，例如 display: flex
+    ],
     plugins: [
         // webpack 内置的 banner-plugin
         new webpack.BannerPlugin("Copyright by wangfupeng1988@github.com."),
@@ -69,18 +71,18 @@ module.exports = {
             __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
         }),
 
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: function () {
-                    return [precss, autoprefixer];
-                },
-                devServer: {
-                    contentBase: "./public", //本地服务器所加载的页面所在的目录
-                    colors: true, //终端中输出结果为彩色
-                    historyApiFallback: true, //不跳转
-                    inline: true //实时刷新
-                }
-            }
-        })
+        // new webpack.LoaderOptionsPlugin({
+        //     options: {
+        //         postcss: function () {
+        //             return [precss, autoprefixer];
+        //         },
+        //         devServer: {
+        //             contentBase: "./public", //本地服务器所加载的页面所在的目录
+        //             colors: true, //终端中输出结果为彩色
+        //             historyApiFallback: true, //不跳转
+        //             inline: true //实时刷新
+        //         }
+        //     }
+        // })
     ]
 }

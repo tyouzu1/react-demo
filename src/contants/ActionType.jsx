@@ -1,0 +1,1 @@
+export const COMPLETE_ALL = 'COMPLETE_ALL';
