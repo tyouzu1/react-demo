@@ -1,18 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { hashHistory } from 'react-router'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import reducer from './reducers'
+import configureStore from './store/categoryStore'
 import RouteMap from './router'
 
 import './static/css/common.less'
 import './static/css/font.css'
 
-const store = createStore(reducer,
-    window.devToolsExtension ? window.devToolsExtension() : undefined
-);
+
+const store = configureStore();
 
 render(
     <Provider store={store}>

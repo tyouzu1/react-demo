@@ -1,7 +1,9 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux';
 
+import * as allActions from '../../../actions';
 import Item from './CategoryItem'
 import {getCategoryData} from '../../../fetch/category'
 
@@ -9,13 +11,10 @@ import './style.less'
 
 class Category extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-        this.state = {
-            data:[]
-        }
-    }
+    shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    state = {
+        category:[],
+    };
 
     componentDidMount() {
         let result = getCategoryData();
@@ -23,15 +22,13 @@ class Category extends React.Component {
             return res.json()
         }).then((json) => {
             this.setState({
-                data:this.state.data.concat(json)
+                category:this.state.category.concat(json),
             });
         }).catch(ex => {
             if (__DEV__){
                 console.error('获取分类数据报错, ', ex.message)
             }
         });
-
-
     }
 
     render (){
@@ -39,23 +36,20 @@ class Category extends React.Component {
         return (
             <div className="nav-category">
               <div className="nav-category-menu">
-                    <Item categoryData = {this.state.data} />
+                    <Item categoryData = {this.state.category} />
               </div>
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {
+const mapStateToProps = state => ({
+    category:state.category
+});
 
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(allActions, dispatch)
+});
 export default connect(
     mapStateToProps,
     mapDispatchToProps

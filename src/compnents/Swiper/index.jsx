@@ -6,14 +6,10 @@ import {Link} from 'react-router'
 
 class Swiper extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-        this.state = {
-            index: 0
-        }
+    shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    state = {
+        index: 0
     }
-
 
     render() {
         const opt = {

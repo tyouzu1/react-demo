@@ -1,6 +1,6 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-
+import PropTypes from 'prop-types';
 import './style.less'
 
 class CategoryItem extends React.Component {
@@ -10,7 +10,10 @@ class CategoryItem extends React.Component {
         this.state = {
             data:[]
         }
+
     }
+
+
     render (){
 
         return (
@@ -25,6 +28,10 @@ class CategoryItem extends React.Component {
             </ul>
         )
     }
+}
+
+CategoryItem.PropTypes = {
+    categoryData:PropTypes.array.isRequired,
 }
 
 export default CategoryItem;

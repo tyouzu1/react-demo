@@ -1,6 +1,7 @@
 import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+import PropTypes from 'prop-types';
 
 import App from '../compnents/App'
 import Home from '../compnents/HomeContainer'
@@ -21,6 +22,9 @@ class RouterMap extends React.Component {
             </Router>
         )
     }
+}
+RouterMap.PropTypes = {
+    history:PropTypes.func.isRequired,
 }
 
 export default RouterMap

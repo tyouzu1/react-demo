@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux'
 import {COMPLETE_ALL} from "../contants/ActionType";
-import {initialState} from '../store/categoryStore'
+// import {initialState} from '../store/categoryStore'
+
+const initialState = [];
 
 function update(state = initialState ,action) {
     switch (action.types){
