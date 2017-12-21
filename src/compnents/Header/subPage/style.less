@@ -37,14 +37,138 @@
   background-color: #3e98f0;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   position: relative;
+
+  .hide {
+    visibility: hidden!important;
+  }
   .nav-category-menu {
     overflow: hidden;
     position: relative;
+
+
+    .lgrad {
+      position: absolute;
+      left: 17px;
+      top: 0;
+      width: 25px;
+      height: 38px;
+      z-index: 1;
+      background-image: linear-gradient(to right,#3e98f0 0,rgba(62,152,240,0) 100%);
+    }
+
+    .rgrad {
+      left: auto;
+      right: 45px;
+      background-image: linear-gradient(to left,#3e98f0 0,rgba(62,152,240,0) 100%);
+      position: absolute;
+      top: 0;
+      width: 25px;
+      height: 38px;
+      z-index: 1;
+
+    }
+    .more {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      display: block;
+      padding: 12px 17px 12px 12px;
+      box-sizing: content-box;
+
+      i {
+        width: 16px;
+        height: 16px;
+        display: block;
+      }
+    }
     ul {
       list-style: none;
-      li {
-        display: inline-block;
+      overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      display: -webkit-box;
+      padding-bottom: 30px;
+      padding-top: 1.18rem;
+      -webkit-transform: translateY(28px);
+     transform: translateY(28px);
+      margin: -48px 45px -1px 17px;
+      li:first-child {
+        margin-left: 0;
       }
+      li {
+        margin: 0 16px;
+        height: 40px;
+        a{
+          display: block;
+          height: 100%;
+          line-height: 41px;
+          color: #c2daf8;
+          padding: 0 4px;
+        }
+      }
+      .selected a{
+        color: #fff!important;
+        border-bottom: 2px solid #fff!important;
+        height: 39px!important;
+      }
+    }
+  }
+  .nav-category-switchover {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    .switchover-container {
+      height: calc(100% - 49px);
+      background: #3e98f0;
+
+      .switchover-title {
+        height: 40px;
+        line-height: 41px;
+        color: #c2daf8;
+        padding: 0 23px;
+        background-size: 10px;
+        position: relative;
+        border-bottom: 1px solid #7baaff;
+        a {
+          background-repeat: no-repeat;
+          position: absolute;
+          left: auto;
+          bottom: 0;
+          top: 0;
+          height: 16px;
+          width: 16px;
+          right: 0;
+          padding: 12px 17px 12px 12px;
+          display: block;
+          color:#c2daf8;
+          i {
+            height: 16px;
+            width: 16px;
+            display: block;
+          }
+        }
+      }
+
+      .switchover-btn{
+        display: -webkit-box;
+        list-style: none;
+        li {
+          flex: 1;
+          width: 100%;
+          position: relative;
+          a {
+            height: 40px;
+            line-height: 41px;
+            display: block;
+            text-align: center;
+            color: #fff;
+          }
+        }
+      }
+
     }
   }
 }

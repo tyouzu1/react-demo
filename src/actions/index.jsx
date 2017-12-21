@@ -1,3 +1,3 @@
 import * as types from '../contants/ActionType'
 
-export const complete = (noteType) => ({type:types.COMPLETE_ALL});
+export const update = (noteType,data) => ({type:types.UPDATE,data});

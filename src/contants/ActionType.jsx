@@ -1,1 +1,1 @@
-export const COMPLETE_ALL = 'COMPLETE_ALL';
+export const UPDATE = 'UPDATE';

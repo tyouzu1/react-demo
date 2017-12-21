@@ -1,20 +1,31 @@
 import {combineReducers} from 'redux'
-import {COMPLETE_ALL} from "../contants/ActionType";
+import {UPDATE} from "../contants/ActionType";
 // import {initialState} from '../store/categoryStore'
 
-const initialState = [];
+const initialState = {};
+const initialState_ = {};
 
-function update(state = initialState ,action) {
+function nav(state = initialState ,action) {
     switch (action.types){
-        case COMPLETE_ALL:
+        case UPDATE:
+            return action.data;
+        default:
             return state;
+    }
+}
+
+function userInfo(state = initialState_ ,action) {
+    switch (action.types){
+        case UPDATE:
+            return action.data;
         default:
             return state;
     }
 }
 
 const rootReducer = combineReducers({
-    update,
+    nav,
+    userInfo
 });
 
 export default rootReducer;
