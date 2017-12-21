@@ -44,7 +44,7 @@ class CategorySwitchover extends React.Component {
                         <li><a href="#">删除及排序</a></li>
                     </ul>
                 </div>
-                <div className="mark"></div>
+                <div className="mark" onClick={this.handleClick}></div>
             </div>
         )
     }

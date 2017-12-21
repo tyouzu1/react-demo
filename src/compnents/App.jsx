@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import {getCategoryData} from '../fetch/category'
-import * as allActions from '../actions';
+import * as allActions from '../actions/categotyAction';
 
 class App extends React.Component {
     constructor(props, context) {
@@ -15,6 +15,7 @@ class App extends React.Component {
         }
     }
     componentDidMount() {
+        //加载完成后更新redux数据
         let result = getCategoryData();
         result.then(res => {
             return res.json()
@@ -44,9 +45,7 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = state => ({
-    nav: state.nav
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
     navActions: bindActionCreators(allActions, dispatch)

@@ -10,20 +10,25 @@ class CategoryItemList extends React.Component {
 
     shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
-    //state data:数据  index：选中的li  lgrad：是否显示模糊遮罩层
+    //state  index：选中的li  lgrad：是否显示模糊遮罩层
     state = {
-        data: [],
         index: 0,
         lgrad:false
     };
 
     handleClick = () => {
         this.props.handleClick();
+
     };
-    handleSelect = (index) => {
+    handleSelect = (index,anchorName) => {
         this.setState({
             index:index
-        })
+        });
+        let anchorElement = document.getElementById(anchorName);
+        if (anchorElement){
+            anchorElement.scrollIntoView({block: "center"});
+
+        }
     };
     handleScroll = (e) => {
         if (e.target.scrollLeft===0){
@@ -58,8 +63,9 @@ class CategoryItemList extends React.Component {
                         this.props.categoryData.map((item, index) => (
                             <Item data={item}
                                   key={index}
-                                  handleClick={this.handleSelect.bind(this, index)}
-                                  className={this.state.index === index}
+                                  handleClick={this.handleSelect.bind(this, index,("nav_"+ index))}
+                                  className={this.state.index === index}//
+                                  id = {"nav_" + index}
                             />
                         ))
                     }

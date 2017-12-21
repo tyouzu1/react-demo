@@ -14,13 +14,13 @@ class Item extends React.Component {
     };
 
     render() {
-        const data = this.props.data;
+        const {data, id, className, width} = this.props;
         return (
-            <li className={this.props.className ? 'selected' : null}
-                onClick={this.handleClick}
+            <li id={id} className={className ? 'selected' : null}
+
                 style={{
                     width: (
-                        this.props.width
+                        width
                             ? (data.name.length === 2
                                 ? '16.6667%'
                                 : '33.3333%'
@@ -29,7 +29,7 @@ class Item extends React.Component {
                     )
                 }}
             >
-                <a href="#">{data.name}</a>
+                <a onClick={this.handleClick} >{data.name}</a>
             </li>
         )
     }
