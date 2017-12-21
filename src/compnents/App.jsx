@@ -4,26 +4,44 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import {getCategoryData} from '../fetch/category'
-import * as allActions from '../actions/categotyAction';
+import {getUserInfoData} from '../fetch/userInfo'
+import * as categoryAction from '../actions/categoryAction';
+import * as userInfoAction from '../actions/userInfoAction';
 
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
-            initDone: false
+            userInfoInitDone: false,
+            categoryInitDone: false
         }
     }
     componentDidMount() {
         //加载完成后更新redux数据
-        let result = getCategoryData();
-        result.then(res => {
+        let userResult = getUserInfoData();
+        userResult.then(res => {
             return res.json()
         }).then((json) => {
-            this.props.navActions.update(json);
+            this.props.userInfoActions.update(json);
             // 更改状态
             this.setState({
-                initDone: true
+                userInfoInitDone: true
+            })
+        }).catch(ex => {
+            if (__DEV__) {
+                console.error('获取分类数据报错, ', ex.message)
+            }
+        });
+        //加载完成后更新redux数据
+        let categoryResult = getCategoryData();
+        categoryResult.then(res => {
+            return res.json()
+        }).then((json) => {
+            this.props.categoryActions.update(json);
+            // 更改状态
+            this.setState({
+                categoryInitDone: true
             })
         }).catch(ex => {
             if (__DEV__) {
@@ -35,7 +53,7 @@ class App extends React.Component {
         return (
             <div>
                 {
-                    this.state.initDone
+                    this.state.userInfoInitDone&&this.state.categoryInitDone
                         ? this.props.children
                         : <div>正在加载...</div>
                 }
@@ -48,7 +66,8 @@ class App extends React.Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-    navActions: bindActionCreators(allActions, dispatch)
+    categoryActions: bindActionCreators(categoryAction, dispatch),
+    userInfoActions: bindActionCreators(userInfoAction, dispatch)
 });
 export default connect(
     mapStateToProps,

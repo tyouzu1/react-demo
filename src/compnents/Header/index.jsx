@@ -3,9 +3,7 @@ import NavBar from './subPage/NavBar'
 import Category from './subPage/Category'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux';
 
-import * as allActions from '../../actions/categotyAction';
 import './style.less'
 
 class HomeContainer extends React.Component {
@@ -20,18 +18,17 @@ class HomeContainer extends React.Component {
         return (
             <div className="header-container">
                 <NavBar  data={this.props.userInfo} />
-                <Category data={this.props.nav} />
+                <Category data={this.props.category} />
             </div>
         )
     }
 }
 const mapStateToProps = state => ({
-    nav: state.nav,
+    category: state.category,
     userInfo:state.userInfo
 });
 
 const mapDispatchToProps = dispatch => ({
-    navActions: bindActionCreators(allActions, dispatch)
 });
 export default connect(
     mapStateToProps,

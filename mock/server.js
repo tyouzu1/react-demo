@@ -1,9 +1,14 @@
 var app = require('koa')();
 var router = require('koa-router')();
 
-var categoryData = require('./category/info.js')
-router.get('/api/category', function *(next) {
+var categoryData = require('./nav/info.js')
+router.get('/api/nav', function *(next) {
     this.body = categoryData
+});
+
+var userInfoData = require('./userInfo/info.js')
+router.get('/api/userInfo', function *(next) {
+    this.body = userInfoData
 });
 
 // // 首页 —— 推荐列表（猜你喜欢）
@@ -24,14 +29,14 @@ router.get('/api/category', function *(next) {
 //
 // // 搜索结果页 - 搜索结果 - 三个参数
 // var searchListData = require('./search/list.js')
-// router.get('/api/search/:page/:city/:category/:keyword', function *(next) {
+// router.get('/api/search/:page/:city/:nav/:keyword', function *(next) {
 //     console.log('搜索结果页 - 搜索结果')
 //
 //     // 参数
 //     const params = this.params
 //     const paramsPage = params.page
 //     const paramsCity = params.city
-//     const paramsCategory = params.category
+//     const paramsCategory = params.nav
 //     const paramsKeyword = params.keyword
 //
 //     console.log('当前页数：' + paramsPage)
@@ -42,14 +47,14 @@ router.get('/api/category', function *(next) {
 //     this.body = searchListData
 // })
 // // 搜索结果页 - 搜索结果 - 两个参数
-// router.get('/api/search/:page/:city/:category', function *(next) {
+// router.get('/api/search/:page/:city/:nav', function *(next) {
 //     console.log('搜索结果页 - 搜索结果')
 //
 //     // 参数
 //     const params = this.params
 //     const paramsPage = params.page
 //     const paramsCity = params.city
-//     const paramsCategory = params.category
+//     const paramsCategory = params.nav
 //
 //     console.log('当前页数：' + paramsPage)
 //     console.log('当前城市：' + paramsCity)
@@ -59,8 +64,8 @@ router.get('/api/category', function *(next) {
 // })
 //
 // // 详情页 - 商户信息
-// const detailInfo = require('./category/info.js')
-// router.get('/api/category/info/:id', function *(next) {
+// const detailInfo = require('./nav/info.js')
+// router.get('/api/nav/info/:id', function *(next) {
 //     console.log('详情页 - 商户信息')
 //
 //     const params = this.params
@@ -71,8 +76,8 @@ router.get('/api/category', function *(next) {
 //     this.body = detailInfo
 // })
 // // 详情页 - 用户评论
-// const detailComment = require('./category/comment.js')
-// router.get('/api/category/comment/:page/:id', function *(next) {
+// const detailComment = require('./nav/comment.js')
+// router.get('/api/nav/comment/:page/:id', function *(next) {
 //     console.log('详情页 - 用户点评')
 //
 //     const params = this.params
