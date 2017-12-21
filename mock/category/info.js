@@ -9,12 +9,10 @@ module.exports = {
         {
             type: 'baijia',
             name: '百家',
-            id: '478'
         },
         {
             type: 'local',
             name: '本地',
-            id: 0
         },
         {
             type: 'info',

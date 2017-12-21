@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux';
 
 import * as allActions from '../../../actions';
-import Item from './CategoryItem'
-import {getCategoryData} from '../../../fetch/category'
+import List from './CategoryItemList'
 import Switchover from './CategorySwitchover'
 
 import './style.less'
@@ -19,17 +18,9 @@ class Category extends React.Component {
     };
 
     componentDidMount() {
-        let result = getCategoryData();
-        result.then(res => {
-            return res.json()
-        }).then((json) => {
-            this.setState({
-                category: this.state.category.concat(json.tag),
-            });
-        }).catch(ex => {
-            if (__DEV__) {
-                console.error('获取分类数据报错, ', ex.message)
-            }
+
+        this.setState({
+            category: this.state.category.concat(this.props.nav.tag),
         });
     }
 
@@ -50,7 +41,7 @@ class Category extends React.Component {
     render() {
         return (
             <div className="nav-category">
-                <Item categoryData={this.state.category} handleClick={this.handleShow.bind(this)}/>
+                <List categoryData={this.state.category} handleClick={this.handleShow.bind(this)}/>
                 <Switchover categoryData={this.state.category} handleClick={this.handleHide.bind(this)} className={this.state.show?'':' hide'}/>
             </div>
         )

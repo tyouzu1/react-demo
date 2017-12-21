@@ -1,3 +1,3 @@
 import * as types from '../contants/ActionType'
 
-export const update = (noteType,data) => ({type:types.UPDATE,data});
+export const update = (data) => ({type:types.UPDATE,data});

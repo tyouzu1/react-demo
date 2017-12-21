@@ -5,8 +5,9 @@ import {UPDATE} from "../contants/ActionType";
 const initialState = {};
 const initialState_ = {};
 
+
 function nav(state = initialState ,action) {
-    switch (action.types){
+    switch (action.type){
         case UPDATE:
             return action.data;
         default:
