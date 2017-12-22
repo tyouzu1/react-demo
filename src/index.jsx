@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 
-import configureStore from './store/categoryStore'
+import configureStore from './store/index'
 import RouteMap from './router'
 
 import './static/css/common.less'
