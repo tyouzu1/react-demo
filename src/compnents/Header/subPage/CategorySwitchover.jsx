@@ -1,12 +1,10 @@
 import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 import Item from './item'
 
 import './style.less'
 
 class CategorySwitchover extends React.Component {
-    shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     state = {
         index: 0,
     };

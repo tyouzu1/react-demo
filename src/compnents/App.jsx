@@ -1,5 +1,4 @@
 import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -9,15 +8,12 @@ import * as categoryAction from '../actions/categoryAction';
 import * as userInfoAction from '../actions/userInfoAction';
 
 class App extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-        this.state = {
-            userInfoInitDone: false,
-            categoryInitDone: false
-        }
+    state = {
+        userInfoInitDone: false,
+        categoryInitDone: false
     }
     componentDidMount() {
+        //TODO 将fetch请求 写到 redux actions 中
         //加载完成后更新redux数据
         let userResult = getUserInfoData();
         userResult.then(res => {

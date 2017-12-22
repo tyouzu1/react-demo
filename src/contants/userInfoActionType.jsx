@@ -1,1 +1,2 @@
 export const USER_INFO = 'USER_INFO';
+export const USER_INFO_IMAGE_MODEL = 'USER_INFO_IMAGE_MODEL';

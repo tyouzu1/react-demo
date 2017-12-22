@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 module.exports = {
-    entry: path.resolve(__dirname, 'src/categoryAction.jsx'),
+    entry: path.resolve(__dirname, 'src/index.jsx'),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: "bundle.js"
