@@ -11,6 +11,16 @@ router.get('/api/userInfo', function *(next) {
     this.body = userInfoData
 });
 
+var carouselNewsData = require('./news/index.js')
+router.get('/api/carousel', function *(next) {
+    this.body = carouselNewsData
+});
+
+var newsData = require('./news/newsList.js')
+router.get('/api/news', function *(next) {
+    this.body = newsData
+});
+
 // // 首页 —— 推荐列表（猜你喜欢）
 // var homeListData = require('./home/list.js')
 // router.get('/api/homelist/:city/:page', function *(next) {

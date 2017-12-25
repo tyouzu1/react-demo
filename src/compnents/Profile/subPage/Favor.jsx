@@ -6,9 +6,9 @@ class Favor extends React.Component {
         return (
             <div>
                 <div className="">
-                    <Back/>
+                    <Back title="我的收藏"/>
                 </div>
-                <div>
+                <div className="">
 
                 </div>
             </div>

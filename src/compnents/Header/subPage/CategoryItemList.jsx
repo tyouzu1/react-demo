@@ -1,14 +1,12 @@
 import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 import PropTypes from 'prop-types';
-
+import { hashHistory } from 'react-router'
 import Item from './item'
 
 import './style.less'
 
 class CategoryItemList extends React.Component {
 
-    shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     //state  index：选中的li  lgrad：是否显示模糊遮罩层
     state = {
@@ -17,6 +15,7 @@ class CategoryItemList extends React.Component {
     };
 
     handleClick = () => {
+
         this.props.handleClick();
 
     };
@@ -71,7 +70,6 @@ class CategoryItemList extends React.Component {
                     }
                 </ul>
                 <p className="rgrad">
-
                 </p>
                 <p className="more" onClick={this.handleClick}><i className="icon-arrow-down2"></i></p>
             </div>

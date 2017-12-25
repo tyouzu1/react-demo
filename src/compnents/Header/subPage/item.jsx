@@ -1,15 +1,14 @@
 import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
-import PropTypes from 'prop-types';
 
 import './style.less'
 
 class Item extends React.Component {
 
-    shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
 
     handleClick = () => {
+        //TODO 更新路由 从参数中改变  进行ajax
+        hashHistory.push('/'+ this.props.category);
         this.props.handleClick();
     };
 

@@ -7,6 +7,7 @@ import Home from '../compnents/HomeContainer'
 import Profile from '../compnents/Profile'
 import Notice from '../compnents/Profile/subPage/Notice'
 import Favor from '../compnents/Profile/subPage/Favor'
+import NotFound from '../compnents/404'
 
 class RouterMap extends React.Component {
 
@@ -15,9 +16,12 @@ class RouterMap extends React.Component {
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home}/>
+                    <Route path='/:name' component={Home}/>
                     <Route path='/profile/home' component={Profile}/>
                     <Route path='/profile/notice' component={Notice}/>
                     <Route path='/profile/favor' component={Favor}/>
+                    <Route path='/detail/:id' component={Favor}/>
+                    <Route path='*' component={NotFound}/>
                 </Route>
             </Router>
         )

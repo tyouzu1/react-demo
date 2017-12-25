@@ -9,7 +9,7 @@ export default function userInfo(state = initialState ,action) {
         case USER_INFO_IMAGE_MODEL:
             return {
                 ...state,
-                imageMode:!state.imageMode
+                imageMode:action.data
             };
         default:
             return state;

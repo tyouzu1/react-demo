@@ -6,6 +6,8 @@ import { hashHistory } from 'react-router'
 import BackHeader from '../BackHeader'
 import NavItem from './subPage/NavItem'
 import * as userInfoAction from '../../actions/userInfoAction';
+import LocalStore from '../../util/localStore'
+import { BD_NEWS_WEBAPP_SHOW_IMAGE } from '../../config/localStoreKey'
 
 import './style.less'
 
@@ -16,7 +18,8 @@ class Profile extends React.Component {
     }
 
     handleSelect() {
-        this.props.userInfoActions.updateImageModel();
+        this.props.userInfoActions.updateImageModel(!this.props.userInfo.imageMode);
+        LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(!this.props.userInfo.imageMode));
     }
 
     render() {

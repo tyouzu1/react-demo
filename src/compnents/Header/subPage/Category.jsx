@@ -1,5 +1,4 @@
 import React from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 import List from './CategoryItemList'
 import Switchover from './CategorySwitchover'
@@ -8,7 +7,6 @@ import './style.less'
 
 class Category extends React.Component {
 
-    shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     state = {
         show: false
     };
