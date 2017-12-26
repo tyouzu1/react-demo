@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { hashHistory } from 'react-router'
+import {hashHistory} from 'react-router'
+import {withRouter} from 'react-router'
 import Item from './item'
 
 import './style.less'
@@ -10,63 +11,57 @@ class CategoryItemList extends React.Component {
 
     //state  index：选中的li  lgrad：是否显示模糊遮罩层
     state = {
-        index: 0,
-        lgrad:false
+        lgrad: false,
+
     };
 
     handleClick = () => {
-
         this.props.handleClick();
-
     };
-    handleSelect = (index,anchorName) => {
-        this.setState({
-            index:index
-        });
-        let anchorElement = document.getElementById(anchorName);
-        if (anchorElement){
-            anchorElement.scrollIntoView({block: "center"});
 
-        }
-    };
     handleScroll = (e) => {
-        if (e.target.scrollLeft===0){
-            if (this.state.lgrad){
+        if (e.target.scrollLeft === 0) {
+            if (this.state.lgrad) {
                 this.setState({
-                    lgrad:false
+                    lgrad: false
                 })
             }
-        }else {
-            if (!this.state.lgrad){
+        } else {
+            if (!this.state.lgrad) {
                 this.setState({
-                    lgrad:true
+                    lgrad: true
                 })
             }
         }
     };
 
-    componentDidMount () {
-    }
+
+
     render() {
 
         return (
             <div className="nav-category-menu">
-                <p className={"lgrad"+
+                <p className={"lgrad" +
                 (this.state.lgrad
-                    ?''
-                    :' none')
+                    ? ''
+                    : ' none')
                 }>
                 </p>
-                <ul onScroll={this.handleScroll} >
+                <ul onScroll={this.handleScroll}>
                     {
-                        this.props.categoryData.map((item, index) => (
+                        this.props.categoryData.map((item, index) => {
+                            let className;
+                            if (this.props.location.pathname.replace('/', '')){
+                                const type = this.props.location.pathname.replace('/', '')||'%E6%8E%A8%E8%8D%90';
+                                className = type && encodeURIComponent(item.name) === type;
+                            }
+                            return (
                             <Item data={item}
                                   key={index}
-                                  handleClick={this.handleSelect.bind(this, index,("nav_"+ index))}
-                                  className={this.state.index === index}//
-                                  id = {"nav_" + index}
+                                  id={"nav_" + index}
+                                  className={className}
                             />
-                        ))
+                        )})
                     }
                 </ul>
                 <p className="rgrad">
@@ -80,4 +75,4 @@ class CategoryItemList extends React.Component {
 
 CategoryItemList.PropTypes = {}
 
-export default CategoryItemList;
+export default withRouter(CategoryItemList);

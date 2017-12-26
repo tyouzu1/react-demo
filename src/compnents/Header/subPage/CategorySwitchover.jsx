@@ -1,40 +1,40 @@
 import React from 'react'
-
+import {withRouter} from 'react-router'
 import Item from './item'
 
 import './style.less'
 
 class CategorySwitchover extends React.Component {
-    state = {
-        index: 0,
-    };
 
     handleClick = () => {
+        //隐藏组件
         this.props.handleClick();
     };
-    handleSelect = (index) => {
-        this.setState({
-            index: index
-        })
-    };
+
     render() {
         return (
             <div className={"nav-category-switchover" + this.props.className}>
                 <div className="switchover-container">
-                    <div className="switchover-title">切换栏目<a href="#" onClick={this.handleClick}><i
+                    <div className="switchover-title">切换栏目<span href="#" onClick={this.handleClick}><i
                         className="icon-arrow-up2">
-                    </i></a></div>
+                    </i></span></div>
                     <div className="switchover-ul">
                         <ul>
                             {
-                                this.props.categoryData.map((item, index) => (
-                                    <Item data={item}
-                                          key={index}
-                                          handleClick={this.handleSelect}
-                                          className={this.state.index === index}
-                                          width
-                                    />
-                                ))
+                                this.props.categoryData.map((item, index) => {
+                                    let className;
+                                    if (this.props.location.pathname.replace('/', '')) {
+                                        const type = this.props.location.pathname.replace('/', '') || '%E6%8E%A8%E8%8D%90';
+                                        className = type && encodeURIComponent(item.name) === type;
+                                    }
+                                    return (
+                                        <Item data={item}
+                                              key={index}
+                                              width
+                                              handleClick={this.handleClick}
+                                              className={className}
+                                        />)
+                                })
                             }
                         </ul>
                     </div>
@@ -49,4 +49,4 @@ class CategorySwitchover extends React.Component {
     }
 }
 
-export default CategorySwitchover;
+export default withRouter(CategorySwitchover);
