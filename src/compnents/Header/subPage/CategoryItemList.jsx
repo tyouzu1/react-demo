@@ -51,7 +51,7 @@ class CategoryItemList extends React.Component {
                     {
                         this.props.categoryData.map((item, index) => {
                             let className;
-                            if (this.props.location.pathname.replace('/', '')){
+                            if (this.props.location.pathname.replace('/', '')||' '){
                                 const type = this.props.location.pathname.replace('/', '')||'%E6%8E%A8%E8%8D%90';
                                 className = type && encodeURIComponent(item.name) === type;
                             }

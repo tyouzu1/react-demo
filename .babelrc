@@ -8,7 +8,9 @@
           "imports": ["react"],
           "locals": ["module"]
         }]
-      }],["transform-object-rest-spread"]]
+      }],["transform-object-rest-spread"],
+        ["transform-decorators-legacy"]
+      ]
     }
   }
 }

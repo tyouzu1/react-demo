@@ -1,46 +1,36 @@
 import React from 'react'
 import ReactSwipe from 'react-swipe'
-import {getCarouselNewsData} from "../../fetch/news";
-import SwiperItem from './SwiperItem'
-import { withRouter } from 'react-router'
-import LocalStore from '../../util/localStore'
-import {NEWS_TYPE} from '../../config/localStoreKey'
+import {withRouter} from 'react-router'
+
+import {getCarouselNewsData, getNewsData} from "../../fetch/news";
+import SwiperItem from './subPage/SwiperItem'
+import NewsItem from './subPage/NewsItem'
+import Loading from '../Loading'
+
 import './style.less'
 
 class News extends React.Component {
 
     state = {
-        initDone: false,
+        carouselInitDone: false,
+        newsInitDone: false,
         index: 0,
         carousel: [],
+        data:[]
     };
-    componentWillMount () {
+
+    componentWillMount() {
         this.fetchData(this.props.location);
     }
-    componentDidMount() {
-        // //获取数据
-        // let result = getCarouselNewsData();
-        // result.then(res => {
-        //     return res.json()
-        // }).then((json) => {
-        //     this.setState({
-        //         carousel: json
-        //     });
-        //     // 更改状态
-        //     this.setState({
-        //         initDone: true
-        //     })
-        // }).catch(ex => {
-        //     if (__DEV__) {
-        //         console.error('获取轮播数据报错, ', ex.message)
-        //     }
-        // });
 
+    componentDidMount() {
 
     }
+
     fetchData(location) {
         this.setState({
-            initDone: false
+            carouselInitDone: false,
+            newsInitDone: false
         });
         //默认推荐
         const type = location.pathname.replace('/', '') || '%E6%8E%A8%E8%8D%90';
@@ -53,9 +43,25 @@ class News extends React.Component {
             });
             // 更改状态
             this.setState({
-                initDone: true
+                carouselInitDone: true
             });
-            LocalStore.setItem(NEWS_TYPE,type);
+        }).catch(ex => {
+            if (__DEV__) {
+                console.error('获取轮播数据报错, ', ex.message)
+            }
+        });
+
+        let newsResult = getNewsData(type);
+        newsResult.then(res => {
+            return res.json()
+        }).then((json) => {
+            this.setState({
+                data: json.data
+            });
+            // 更改状态
+            this.setState({
+                newsInitDone: true
+            });
         }).catch(ex => {
             if (__DEV__) {
                 console.error('获取轮播数据报错, ', ex.message)
@@ -80,18 +86,26 @@ class News extends React.Component {
         };
         return (
 
-                    this.state.initDone
-                        ? <div className="news-container">
-                            <ReactSwipe swipeOptions={opt}>
-                                {this.state.carousel.data.news.map((item, index) =>
-                                    <div className="carousel-item" key={index}>
-                                        <SwiperItem data={item}/>
-                                    </div>
-                                )}
-                            </ReactSwipe>
+            (this.state.carouselInitDone && this.state.newsInitDone)
+                ? <div className="news-container">
+                    <ReactSwipe swipeOptions={opt}>
+                        {this.state.carousel.data.news.map((item, index) =>
+                            <div className="carousel-item" key={index}>
+                                <SwiperItem data={item}/>
+                            </div>
+                        )}
+                    </ReactSwipe>
+                <div className="news-list-container">
+                    <NewsItem data={this.state.data.top[0]} />
+                    {
+                        this.state.data.news.map((item,index)=>
+                            <NewsItem data={item} key={index} />
+                        )
+                    }
+                </div>
 
-                        </div>
-                        : <div>正在加载...</div>
+                </div>
+                : <Loading />
 
         )
     }
