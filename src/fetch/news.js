@@ -5,7 +5,7 @@ export function getCarouselNewsData(type) {
     return result;
 }
 
-export function getNewsData() {
-    const result = get('/api/news');
+export function getNewsData(type) {
+    const result = get('/api/news/'+type);
     return result;
 }

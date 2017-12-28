@@ -6,6 +6,10 @@ import './style.less'
 class Item extends React.Component {
 
     handleClick = () => {
+        if(this.props.className){
+            //不可重复点击 从而刷新
+            return;
+        }
         hashHistory.push('/' + encodeURIComponent(this.props.data.name));
         //如果在下拉菜单界面 点击后关闭菜单
         this.props.handleClick ? (this.props.handleClick()) : null;

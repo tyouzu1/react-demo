@@ -11,25 +11,36 @@ router.get('/api/userInfo', function *(next) {
     this.body = userInfoData
 });
 
-var carouselNewsData = require('./news/index.js')
-var carouselNewsData2 = require('./news/index2.js')
-var carouselNewsData3 = require('./news/index3.js')
-router.get('/api/carousel/:type', function *(next) {
-    const params = this.params
-    console.log(params.type);
-          if (['推荐','娱乐','女人','科技','国内','财经','教育','人文'].includes(params.type))
-    {
-        this.body = carouselNewsData
-    }else if (['百家','社会','搞笑','生活','体育','房产','游戏'].includes(params.type)){
-        this.body = carouselNewsData2
-    }else if (['本地','军事','互联网','国际','汽车','时尚','旅游'].includes(params.type)){
-        this.body = carouselNewsData3
-    }
-});
+// var carouselNewsData = require('./news/index.js')
+// var carouselNewsData2 = require('./news/index2.js')
+// var carouselNewsData3 = require('./news/index3.js')
+// router.get('/api/carousel/:type', function *(next) {
+//     const params = this.params
+//     console.log(params.type);
+//           if (['推荐','娱乐','女人','科技','国内','财经','教育','人文'].includes(params.type))
+//     {
+//         this.body = carouselNewsData
+//     }else if (['百家','社会','搞笑','生活','体育','房产','游戏'].includes(params.type)){
+//         this.body = carouselNewsData2
+//     }else if (['本地','军事','互联网','国际','汽车','时尚','旅游'].includes(params.type)){
+//         this.body = carouselNewsData3
+//     }
+// });
 
 var newsData = require('./news/newsList.js')
-router.get('/api/news', function *(next) {
-    this.body = newsData
+var newsData2 = require('./news/newsList2.js')
+var newsData3 = require('./news/newsList3.js')
+router.get('/api/news/:type', function *(next) {
+    const params = this.params
+    console.log(params.type);
+    if (['推荐','娱乐','女人','科技','国内','财经','教育','人文'].includes(params.type))
+    {
+        this.body = newsData
+    }else if (['百家','社会','搞笑','生活','体育','房产','游戏'].includes(params.type)){
+        this.body = newsData2
+    }else if (['本地','军事','互联网','国际','汽车','时尚','旅游'].includes(params.type)){
+        this.body = newsData3
+    }
 });
 
 // // 首页 —— 推荐列表（猜你喜欢）
