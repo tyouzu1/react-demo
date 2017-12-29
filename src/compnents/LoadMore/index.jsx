@@ -5,7 +5,7 @@ import './style.less'
 class LoadMore extends React.Component {
 
     render() {
-        //TODO  加载更多
+
         return (
             <div className="load-more-container">
                 {
