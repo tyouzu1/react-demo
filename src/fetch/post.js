@@ -12,7 +12,6 @@ function obj2params(obj) {
     if (result) {
         result = result.slice(1);
     }
-
     return result;
 }
 
@@ -23,7 +22,8 @@ export function post(url, paramsObj) {
         credentials: 'include',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Access-Control-Allow-Origin': '*',
         },
         body: obj2params(paramsObj)
     });

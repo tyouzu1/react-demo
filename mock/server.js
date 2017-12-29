@@ -1,5 +1,9 @@
-var app = require('koa')();
-var router = require('koa-router')();
+
+// 1.4.1
+// 5.4.1
+const Koa = require('koa');
+const app = new Koa();
+const router = require('koa-router')();
 
 var categoryData = require('./nav/info.js')
 router.get('/api/nav', function *(next) {
@@ -11,21 +15,14 @@ router.get('/api/userInfo', function *(next) {
     this.body = userInfoData
 });
 
-// var carouselNewsData = require('./news/index.js')
-// var carouselNewsData2 = require('./news/index2.js')
-// var carouselNewsData3 = require('./news/index3.js')
-// router.get('/api/carousel/:type', function *(next) {
-//     const params = this.params
-//     console.log(params.type);
-//           if (['推荐','娱乐','女人','科技','国内','财经','教育','人文'].includes(params.type))
-//     {
-//         this.body = carouselNewsData
-//     }else if (['百家','社会','搞笑','生活','体育','房产','游戏'].includes(params.type)){
-//         this.body = carouselNewsData2
-//     }else if (['本地','军事','互联网','国际','汽车','时尚','旅游'].includes(params.type)){
-//         this.body = carouselNewsData3
-//     }
-// });
+var carouselNewsData = require('./news/index.js')
+var carouselNewsData2 = require('./news/index2.js')
+var carouselNewsData3 = require('./news/index3.js')
+router.post('/api/addNews', function *(ctx,next) {
+    // 获取参数
+    console.log(ctx);
+    this.body = carouselNewsData
+});
 
 var newsData = require('./news/newsList.js')
 var newsData2 = require('./news/newsList2.js')

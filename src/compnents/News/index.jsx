@@ -1,14 +1,14 @@
 import React from 'react'
-import ReactSwipe from 'react-swipe'
 import {withRouter} from 'react-router'
 
 import {getNewsData} from "../../fetch/news";
-import SwiperItem from './subPage/SwiperItem'
-import NewsItem from './subPage/NewsItem'
+import {postAddNewsData} from "../../fetch/news";
 import Loading from '../Loading'
 import LoadMore from '../LoadMore'
 import LocalStore from '../../util/localStore'
 import {BD_NEWS_WEBAPP_SHOW_IMAGE} from '../../config/localStoreKey'
+import Swiper from './subPage/Swiper'
+import NewsList from './subPage/NewsList'
 
 import './style.less'
 
@@ -20,35 +20,39 @@ class News extends React.Component {
         carousel: [],
         newsList: [],
         loadMore: true,
-        isLoadingMore: false,
+        isLoadingMore: true,
+        page: 0,
     };
 
     componentWillMount() {
-        // this.fetchData(this.props.location);
+        console.log('新闻内容WillMount');
+        this.fetchData(this.props.location);
     }
 
     componentDidMount() {
         //首次加载页面
-        let newsResult = getNewsData('%E6%8E%A8%E8%8D%90');
-        newsResult.then(res => {
-            return res.json()
-        }).then((json) => {
-            console.log(json.data)
-            this.setState({
-                carousel: json.data.toppic,
-                newsList: json.data.top.concat(json.data.news),
-                loadMore: json.data.hasmore,
-                initDone: true,
-            });
-        }).catch(ex => {
-            if (__DEV__) {
-                console.error('获取news数据报错, ', ex.message)
-            }
-        });
+        // this.fetchData(this.props.location);
+        // let newsResult = getNewsData('%E6%8E%A8%E8%8D%90');
+        // newsResult.then(res => {
+        //     return res.json()
+        // }).then((json) => {
+        //     this.setState({
+        //         carousel: json.data.toppic,
+        //         newsList: json.data.top.concat(json.data.news),
+        //         loadMore: json.data.hasmore,
+        //         initDone: true,
+        //         page: 1,
+        //         isLoadingMore: false,
+        //     });
+        // }).catch(ex => {
+        //     if (__DEV__) {
+        //         console.error('获取news数据报错, ', ex.message)
+        //     }
+        // });
+
     }
 
     fetchData(location) {
-        console.log(11)
         this.setState({
             initDone: false,
         });
@@ -58,11 +62,16 @@ class News extends React.Component {
         newsResult.then(res => {
             return res.json()
         }).then((json) => {
+            const toppic = json.data.toppic,
+                newsList = json.data.top.concat(json.data.news),
+                hasmore = json.data.hasmore;
             this.setState({
-                carousel: json.data.toppic,
-                newsList: json.data.top.concat(json.data.news),
-                loadMore: json.data.hasmore,
+                carousel: toppic,
+                newsList: newsList,
+                loadMore: hasmore,
                 initDone: true,
+                page: 1,
+                isLoadingMore: false,
             });
         }).catch(ex => {
             if (__DEV__) {
@@ -77,36 +86,42 @@ class News extends React.Component {
         }
     }
 
+    handleLoadMore() {
+        this.setState({
+            isLoadingMore: true
+        });
+        //触发，加载数据
+        let result = postAddNewsData(this.state.page + 1);
+        result.then(res => {
+            return res.json()
+        }).then(json => {
+            const newsList = json.data.news,
+                loadMore = json.data.hasmore;
+            this.setState({
+                newsList: this.state.newsList.concat(newsList),
+                loadMore: loadMore,
+                page: this.state.page + 1,
+                isLoadingMore: false
+            });
+        }).catch(ex => {
+            if (__DEV__) {
+                console.error('首页”猜你喜欢“获取数据报错, ', ex.message)
+            }
+        });
+    }
+
     render() {
-        const opt = {
-            // auto: 2100,
-            callback: function (index) {
-                this.setState({
-                    index: index
-                })
-            }.bind(this)
-        };
-        const imageMode = LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE)=="false"?false:true ;
+
+        const imageMode = LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE) !== "false";
 
         return (
 
             this.state.initDone
                 ? <div className="news-container">
-                    {imageMode && <ReactSwipe swipeOptions={opt}>
-                        {this.state.carousel.map((item, index) =>
-                            <div className="carousel-item" key={index}>
-                                <SwiperItem data={item}/>
-                            </div>
-                        )}
-                    </ReactSwipe>}
-                    <div className="news-list-container">
-                        {
-                            this.state.newsList.map((item, index) =>
-                                <NewsItem data={item} key={index} imageMode={imageMode} />
-                            )
-                        }
-                    </div>
-                    {this.state.loadMore && <LoadMore isLoadingMore={this.state.isLoadingMore}/>}
+                    {imageMode && <Swiper data={this.state.carousel}/>}
+                    <NewsList data={this.state.newsList} imageMode={imageMode}/>
+                    {this.state.loadMore &&
+                    <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.handleLoadMore.bind(this)}/>}
                 </div>
                 : <Loading/>
 
