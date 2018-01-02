@@ -3,12 +3,14 @@ import { Router, Route, IndexRoute } from 'react-router'
 import PropTypes from 'prop-types';
 
 import App from '../compnents/App'
-import Home from '../compnents/HomeContainer'
+import Home from '../compnents/Home'
 import Profile from '../compnents/Profile'
 import Notice from '../compnents/Profile/subPage/Notice'
 import Favor from '../compnents/Profile/subPage/Favor'
 import NotFound from '../compnents/404'
 import NewsDetail from '../compnents/NewsDetail'
+import Subscribe from '../compnents/Subscribe'
+import Manage from '../compnents/Manage'
 
 class RouterMap extends React.Component {
 
@@ -22,7 +24,8 @@ class RouterMap extends React.Component {
                     <Route path='/profile/home' component={Profile}/>
                     <Route path='/profile/notice' component={Notice}/>
                     <Route path='/profile/favor' component={Favor}/>
-                    <Route path='/detail/:id' component={Favor}/>
+                    <Route path='/subscribe/home' component={Subscribe}/>
+                    <Route path='/subscribe/manage' component={Manage}/>
                     <Route path='*' component={NotFound}/>
                 </Route>
             </Router>

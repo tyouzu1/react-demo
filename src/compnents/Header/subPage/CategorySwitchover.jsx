@@ -1,5 +1,5 @@
 import React from 'react'
-import {withRouter} from 'react-router'
+import {withRouter,Link} from 'react-router'
 import Item from './item'
 
 import './style.less'
@@ -39,7 +39,7 @@ class CategorySwitchover extends React.Component {
                         </ul>
                     </div>
                     <ul className="switchover-btn">
-                        <li><a href="#">删除及排序</a></li>
+                        <li><Link to="/subscribe/manage">删除及排序</Link></li>
                     </ul>
                 </div>
                 <div className="mark" onClick={this.handleClick}>
