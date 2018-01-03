@@ -35,10 +35,8 @@ class CategoryItemList extends React.Component {
         }
     };
 
-
-
     render() {
-
+        const url = this.props.location.pathname.split('/').pop().replace('news','');
         return (
             <div className="nav-category-menu">
                 <p className={"lgrad" +
@@ -47,13 +45,15 @@ class CategoryItemList extends React.Component {
                     : ' none')
                 }>
                 </p>
-                <ul onScroll={this.handleScroll}>
+                <ul onScroll={this.handleScroll} >
                     {
                         this.props.categoryData.map((item, index) => {
                             let className;
-                            if (this.props.location.pathname.replace('/', '')||' '){
-                                const type = this.props.location.pathname.replace('/', '')||'%E6%8E%A8%E8%8D%90';
+                            if (url){
+                                const type = url||'%E6%8E%A8%E8%8D%90';
                                 className = type && encodeURIComponent(item.name) === type;
+                            }if(!url){
+                                className = encodeURIComponent(item.name) === '%E6%8E%A8%E8%8D%90'
                             }
                             return (
                             <Item data={item}

@@ -19,8 +19,11 @@ class NavBar extends React.Component {
                         <i className="icon-user float-left">
                         </i>
                     </Link>
-                    <i className="icon-plus float-right"></i>
-                    <i className="icon-search float-right"></i>
+                    <Link to='/subscribe/home'><i className="icon-plus float-right"></i> </Link>
+                    <Link to='/searchpage/home'>
+                        <i className="icon-search float-right">
+                        </i>
+                    </Link>
                 </div>
             </div>
         )

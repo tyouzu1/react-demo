@@ -57,7 +57,7 @@ class News extends React.Component {
             initDone: false,
         });
         //改变url为 / 时 继续取出默认的数据 （推荐）
-        const type = location.pathname.replace('/', '') || '%E6%8E%A8%E8%8D%90';
+        const type = location.pathname.split('/').pop().replace('news','')||'%E6%8E%A8%E8%8D%90';
         let newsResult = getNewsData(type);
         newsResult.then(res => {
             return res.json()

@@ -1,15 +1,15 @@
 import React from 'react'
 
-class NewsDetail extends React.Component {
+class SectionItem extends React.Component {
 
     render() {
 
         return (
             <div>
-                detail
+
             </div>
         )
     }
 }
 
-export default NewsDetail;
+export default SectionItem;
