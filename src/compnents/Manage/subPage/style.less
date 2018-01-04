@@ -5,6 +5,14 @@
     position: relative;
     list-style-type: none;
 
+    .placeholder {
+      display: none ;
+    }
+    .moving {
+      z-index: 2;
+      box-shadow: 0 0 0 #f6f6f6;
+      background-color: #fcfcfc;
+    }
     li {
       position: relative;
       padding: 12px 47px 12px 27px;
@@ -32,6 +40,7 @@
         line-height: 44px;
       }
 
+
       .delete {
         position: absolute;
         top: 0;
@@ -52,6 +61,7 @@
         background-position: 12px 12.5px;
       }
       .handle {
+        touch-action: none;
         position: absolute;
         top: 0;
         right: -10px;
@@ -68,10 +78,9 @@
         font-weight: 400;
       }
       .confirm-delete {
-        display: none;
         position: absolute;
         top: 8px;
-        right: -1px;
+        right: 0px;
         height: 27px;
         width: 50px;
         background-color: #f13232;

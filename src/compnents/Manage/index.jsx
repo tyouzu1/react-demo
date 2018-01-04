@@ -13,19 +13,28 @@ class Manage extends React.Component {
     };
 
     componentWillMount() {
-        const data = this.props.category.tag;
+        const lsData = this.props.category.tag;
         this.setState({
-            data:data,
+            lsData:lsData,
         });
     }
+
+    setSubscribeFn () {
+        this.props.categoryActions.update(this.state.lsData);
+    }
+
+    setLsDataOrderFn () {
+        this.props.categoryActions.update(this.state.lsData);
+    }
+
 //TODO 拖拽效果
     render() {
         return (
             <div>
                 <BackHeader title="订阅管理" btn />
                 <div className="manage-subscribe-container">
-                    <h3>已有<span>{this.state.data.length}</span>个订阅</h3>
-                    {this.state.data&&<ManageList data={this.state.data} />}
+                    <h3>已有<span>{this.state.lsData.length}</span>个订阅</h3>
+                    {this.state.lsData&&<ManageList data={this.state.lsData} setSubscribeFn={this.setSubscribeFn.bind(this)} setLsDataOrderFn={this.setLsDataOrderFn.bind(this)}  />}
                 </div>
             </div>
         )
