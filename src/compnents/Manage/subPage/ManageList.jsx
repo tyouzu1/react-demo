@@ -6,21 +6,11 @@ import './style.less'
 
 class ManageList extends React.Component {
 
-    state = {
-        lsData: [{
+    render() {
+        const lsData = [{
             name: "",
             type: "placeholder",
-        }]
-    };
-
-    componentWillMount() {
-        this.setState({
-            lsData: this.state.lsData.concat(this.props.data)
-        })
-    }
-
-    render() {
-        const {lsData,setLsDataOrderFn,setSubscribeFn} = this.state;
+        }].concat(this.props.data);
 
         const chosen = lsData.filter(item =>
             item.type === "chosen"
@@ -41,7 +31,7 @@ class ManageList extends React.Component {
                 <ul>
                     {
                         other.map((item, index) =>
-                            <Item item={item} key={index} setSubscribeFn={setSubscribeFn} setLsDataOrderFn={setLsDataOrderFn} />
+                            <Item item={item} key={index}  setSubscribeFn={this.props.setSubscribeFn} setLsDataOrderFn={this.props.setLsDataOrderFn} />
                         )
                     }
                 </ul>

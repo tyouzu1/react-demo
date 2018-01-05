@@ -10,24 +10,41 @@ import './style.less'
 class Manage extends React.Component {
 
     state = {
+        lsData:this.props.category.tag
     };
-
-    componentWillMount() {
-        const lsData = this.props.category.tag;
+    static orderFn (arr,index,tindex){
+        if(index>tindex){
+            arr.splice(tindex+1,0,arr[index-1]);
+            arr.splice(index,1)
+        }else{
+            arr.splice(tindex+1,0,arr[index]);
+            arr.splice(index,1)
+        }
+    }
+    setSubscribeFn (name) {
+        let data = Object.assign({},this.props.category);
+        data.tag = data.tag.filter(item => item.name!==name)
+        this.props.categoryActions.update(
+            data
+        );
         this.setState({
-            lsData:lsData,
-        });
+            lsData:data.tag
+        })
     }
 
-    setSubscribeFn () {
-        this.props.categoryActions.update(this.state.lsData);
+    setLsDataOrderFn (ulIndex,phIndex) {
+        // let data = JSON.parse(JSON.stringify(this.props.category));
+        let data = Object.assign({},this.props.category);
+        Manage.orderFn(data.tag,ulIndex,phIndex);
+        //不一样时更新
+        if(ulIndex !== phIndex){
+            this.props.categoryActions.update(data);
+            this.setState({
+                lsData:data.tag
+            })
+        }
     }
 
-    setLsDataOrderFn () {
-        this.props.categoryActions.update(this.state.lsData);
-    }
-
-//TODO 拖拽效果
     render() {
         return (
             <div>
