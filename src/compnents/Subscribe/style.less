@@ -28,7 +28,7 @@
     position: relative;
     margin-top: 5px;
     border-bottom: 1px solid #b8bac0;
-    .content-nav-items,.refresh {
+    .content-nav-items,.refresh,.refreshDis {
       float: left;
       position: relative;
       text-align: left;
@@ -45,27 +45,23 @@
       border-bottom: 2px solid #239bf0;
       padding-bottom: 12px;
     }
-    .refresh {
+    .refresh ,.refreshDis{
       margin: 0;
       position: absolute;
       top: 0;
       right: 0;
       float: none;
     }
+    .refreshDis{
+      color: #767676!important;
+    }
 
   }
-
   .content-container {
 
-    .content-section {
-      -webkit-transition-property: opacity;
-      transition-property: opacity;
-      -webkit-transition-duration: .5s;
-      transition-duration: .5s;
-      -webkit-transition-timing-function: ease-out;
-      transition-timing-function: ease-out;
-      min-height: 200px;
-    }
+
+
+
   }
 
   .content-btn {

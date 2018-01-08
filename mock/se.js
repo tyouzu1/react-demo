@@ -10,6 +10,11 @@ const carouselNewsData2 = require('./news/index2.js')
 const carouselNewsData3 = require('./news/index3.js')
 const carouselNewsData4 = require('./news/index4.js')
 const carouselNewsData5 = require('./news/index5.js')
+const subscribe = require('./subscribe/index.js')
+const subscribe2 = require('./subscribe/index2.js')
+const subscribe3 = require('./subscribe/index3.js')
+const subscribe4 = require('./subscribe/index4.js')
+const subscribe5 = require('./subscribe/index5.js')
 const Router = require('koa-router')
 const koaBody = require('koa-body');
 
@@ -41,6 +46,7 @@ page.get('/nav', async (ctx) => {
 page.post('/addNews', koaBody(), async (ctx) => {
     const page = parseInt(ctx.request.body.page);
     console.log(page)
+    console.log(ctx.request.body)
     const random = Math.random()
 
     if (random<0.2) {
@@ -59,6 +65,31 @@ page.post('/addNews', koaBody(), async (ctx) => {
         console.log('page1')
         ctx.body = carouselNewsData
     }
+})
+
+
+page.post('/subscribe',koaBody(),async(ctx) => {
+    const type = ctx.request.body.type ;
+    const id =  ctx.request.body.id ;
+    console.log(type,id)
+    if(id === 1 ){
+        if(type === '媒体'){
+            ctx.body = subscribe
+        }else if(type === '频道'){
+            ctx.body = subscribe3
+        }else if(type === '话题'){
+            ctx.body = subscribe2
+        }
+    }else {
+        if(type === '媒体'){
+            ctx.body = subscribe
+        }else if(type === '频道'){
+            ctx.body = subscribe3
+        }else if(type === '话题'){
+            ctx.body = subscribe2
+        }
+    }
+
 })
 // 装载所有子路由
 let router = new Router()
