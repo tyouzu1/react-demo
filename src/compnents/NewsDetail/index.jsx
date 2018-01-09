@@ -2,10 +2,11 @@ import React from 'react'
 
 import DetailHeader from './subPage/DetailHeader'
 import Content from './subPage/Content'
+import Comment from './subPage/Comment'
 import Loading from '../Loading'
 import {getNewsDetailData} from '../../fetch/news'
 import LocalStore from '../../util/localStore'
-import { FONT_SIZE } from '../../config/localStoreKey'
+import {FONT_SIZE} from '../../config/localStoreKey'
 
 
 import './style.less'
@@ -16,6 +17,7 @@ class NewsDetail extends React.Component {
         data: [],
         fontSize: 1,
     }
+
     componentDidMount() {
         let id = this.props.params.name;
         this.fetchData(id);
@@ -29,7 +31,7 @@ class NewsDetail extends React.Component {
         }).then((json) => {
             this.setState({
                 data: json.data.news,
-                fontSize:fontSize
+                fontSize: fontSize
             })
         }).catch(ex => {
             if (__DEV__) {
@@ -41,22 +43,22 @@ class NewsDetail extends React.Component {
     handleChange(model) {
         if (model) {
             let fontSize = this.state.fontSize + 1
-            if(fontSize>=5){
+            if (fontSize >= 5) {
                 fontSize--
             }
             this.setState({
-                fontSize:fontSize
+                fontSize: fontSize
             })
-            LocalStore.setItem(FONT_SIZE,fontSize)
+            LocalStore.setItem(FONT_SIZE, fontSize)
         } else if (!model) {
             let fontSize = this.state.fontSize - 1
-            if(fontSize<=0){
+            if (fontSize <= 0) {
                 fontSize++
             }
             this.setState({
-                fontSize:fontSize
+                fontSize: fontSize
             })
-            LocalStore.setItem(FONT_SIZE,fontSize)
+            LocalStore.setItem(FONT_SIZE, fontSize)
         }
     }
 
@@ -67,9 +69,8 @@ class NewsDetail extends React.Component {
                 ? <div className={"font-size-" + this.state.fontSize}>
                     <div style={{position: 'relative', display: 'block'}}>
                         <DetailHeader/>
-                        <div className="detail-container show-more">
-                            <Content data={this.state.data[0]} change={this.handleChange.bind(this)}/>
-                        </div>
+                        <Content data={this.state.data[0]} change={this.handleChange.bind(this)}/>
+                        <Comment />
                     </div>
                 </div>
                 : <Loading/>
