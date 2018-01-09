@@ -13,6 +13,7 @@ import Subscribe from '../compnents/Subscribe'
 import Search from '../compnents/Subscribe/subPage/Search'
 import Manage from '../compnents/Manage'
 import SearchPage from '../compnents/SearchPage'
+import SectionItemNews from '../compnents/Subscribe/subPage/SectionItemNews'
 
 class RouterMap extends React.Component {
 
@@ -30,6 +31,7 @@ class RouterMap extends React.Component {
                     <Route path='/subscribe/manage' component={Manage}/>
                     <Route path='/subscribe/search' component={Search}/>
                     <Route path='/searchpage/home' component={SearchPage}/>
+                    <Route path='/subscribe/news/:name' component={SectionItemNews}/>
                     <Route path='*' component={NotFound}/>
                 </Route>
             </Router>

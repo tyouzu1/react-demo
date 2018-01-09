@@ -12,7 +12,7 @@ class Section extends React.Component {
                         <dd>
                             {
                                 this.props.data.map((item,index)=>
-                                    <SectionItem item = {item} key={index} />
+                                    <SectionItem item = {item} key={index} fixed={this.props.fixed} />
                                 )
                             }
                         </dd>

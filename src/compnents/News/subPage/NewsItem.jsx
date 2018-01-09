@@ -1,6 +1,6 @@
 import React from 'react'
 import LazyLoad from 'react-lazyload';
-
+import {hashHistory} from 'react-router'
 
 import './style.less'
 
@@ -21,10 +21,14 @@ const Bottom = ({site, type}) => (
 
 class NewsItem extends React.Component {
 
+    handleClick(){
+        hashHistory.push('/detail/'+this.props.nid);
+    }
+
     render() {
         if (!this.props.imageMode) {
             return (
-                <div className="news-list-item-container">
+                <div className="news-list-item-container" onClick={()=>this.handleClick()}>
                     <div className="news-list-item">
                         <div className="item-main">
                             <div className="item-text">
@@ -39,7 +43,7 @@ class NewsItem extends React.Component {
         } else {
             const images = this.props.data.imageurls;
             return (
-                <div className="news-list-item-container">
+                <div className="news-list-item-container" onClick={()=>this.handleClick()}>
                     <div className="news-list-item">
                         {
                             !images.length ? <div className="item-main">

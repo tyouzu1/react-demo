@@ -23,21 +23,25 @@ class Subscribe extends React.Component {
 
 
     componentWillMount() {
-        //TODO 三个action fetch请求
-        let result = postSubscribeData('媒体', 1);
+        this.fetchData(1);
+    }
+
+    mediaData(index){
+        let result = postSubscribeData('媒体', index);
         result.then(res => {
             return res.json()
         }).then((json) => {
             this.setState({
                 mediaList: json.data.media,
-                index: 1
             })
         }).catch(ex => {
             if (__DEV__) {
                 console.error('获取user数据报错, ', ex.message)
             }
         });
-        let result2 = postSubscribeData('频道', 1);
+    }
+    channelData(index){
+        let result2 = postSubscribeData('频道', index);
         result2.then(res => {
             return res.json()
         }).then((json) => {
@@ -49,7 +53,9 @@ class Subscribe extends React.Component {
                 console.error('获取user数据报错, ', ex.message)
             }
         });
-        let result3 = postSubscribeData('话题', 1);
+    }
+    tagData(index){
+        let result3 = postSubscribeData('话题', index);
         result3.then(res => {
             return res.json()
         }).then((json) => {
@@ -61,13 +67,16 @@ class Subscribe extends React.Component {
                 console.error('获取user数据报错, ', ex.message)
             }
         });
+    }
+    fetchData(index){
+        this.mediaData(index);
+        this.channelData(index)
+        this.tagData(index);
         const lsData = this.props.category.tag;
         this.setState({
             lsData: lsData
         });
-
     }
-
     componentDidMount() {
         this.setState({
             index: 1
@@ -75,12 +84,14 @@ class Subscribe extends React.Component {
     }
 
     handleClick() {
-console.log(this.state.index)
-
+        if(this.state.index===1){
+            this.mediaData();
+        } else if(this.state.index===3){
+            this.tagData();
+        }
     }
 
     handleSelect(index) {
-        console.log(this.state)
         this.setState({
             index:index
         })
@@ -111,7 +122,7 @@ console.log(this.state.index)
                                 ? this.state.index === 1
                                 ? <Section data={this.state.mediaList}/>
                                 : this.state.index === 2
-                                    ? <Section data={this.state.channelList}/>
+                                    ? <Section data={this.state.channelList} fixed />
                                     : this.state.index === 3
                                         ? <Section data={this.state.tagList}/>
                                         : null

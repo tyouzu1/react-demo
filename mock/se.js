@@ -5,6 +5,7 @@ const userInfoData = require('./userInfo/info.js')
 const newsData = require('./news/newsList.js')
 const newsData2 = require('./news/newsList2.js')
 const newsData3 = require('./news/newsList3.js')
+const newsData4 = require('./news/newsList3.js')
 const carouselNewsData = require('./news/index.js')
 const carouselNewsData2 = require('./news/index2.js')
 const carouselNewsData3 = require('./news/index3.js')
@@ -15,6 +16,7 @@ const subscribe2 = require('./subscribe/index2.js')
 const subscribe3 = require('./subscribe/index3.js')
 const subscribe4 = require('./subscribe/index4.js')
 const subscribe5 = require('./subscribe/index5.js')
+const detail = require('./news/detail.js')
 const Router = require('koa-router')
 const koaBody = require('koa-body');
 
@@ -41,6 +43,14 @@ page.get('/nav', async (ctx) => {
     } else if (['本地', '军事', '互联网', '国际', '汽车', '时尚', '旅游'].includes(params.type)) {
         ctx.body = newsData3
     }
+}).get('/subscribe/newsList/:type', async (ctx) => {
+    const params = ctx.params
+    console.log(params)
+    ctx.body = newsData4
+}).get('/detail/:id',async(ctx)=>{
+    const params = ctx.params
+    console.log(params)
+    ctx.body = detail
 })
 
 page.post('/addNews', koaBody(), async (ctx) => {
@@ -65,14 +75,11 @@ page.post('/addNews', koaBody(), async (ctx) => {
         console.log('page1')
         ctx.body = carouselNewsData
     }
-})
-
-
-page.post('/subscribe',koaBody(),async(ctx) => {
+}).post('/subscribe',koaBody(),async(ctx) => {
     const type = ctx.request.body.type ;
     const id =  ctx.request.body.id ;
     console.log(type,id)
-    if(id === 1 ){
+    if(parseInt(id) === 1 ){
         if(type === '媒体'){
             ctx.body = subscribe
         }else if(type === '频道'){
@@ -82,11 +89,11 @@ page.post('/subscribe',koaBody(),async(ctx) => {
         }
     }else {
         if(type === '媒体'){
-            ctx.body = subscribe
+            ctx.body = subscribe4
         }else if(type === '频道'){
             ctx.body = subscribe3
         }else if(type === '话题'){
-            ctx.body = subscribe2
+            ctx.body = subscribe5
         }
     }
 

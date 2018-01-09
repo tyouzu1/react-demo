@@ -36,6 +36,8 @@ class CategoryItemList extends React.Component {
     };
 
     render() {
+        // console.log(this.props.params.name,12312)
+        //应该直接使用params
         const url = this.props.location.pathname.split('/').pop().replace('news','');
         return (
             <div className="nav-category-menu">

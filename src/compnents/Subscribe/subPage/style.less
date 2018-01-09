@@ -148,20 +148,26 @@
     }
   }
 
-  .item.on .icon {
-    background-position: right -10px;
+  .item.on {
+    .icon {
+      background-position: right -10px;
+    }
   }
-  .item.off .icon {
-    background-position: right -95px;
-    margin-right: 5px;
+  .item.off{
+    .icon {
+      background-position: right -95px;
+      margin-right: 5px;
+    }
   }
 
 
 }
 
-.item-wrapper:nth-of-type(odd) .item {
-  border-left: 0;
-}
-.item-wrapper:nth-of-type(odd) .item span {
-  padding-left: 0;
+.item-wrapper:nth-of-type(odd){
+  .item {
+    border-left: 0;
+    span {
+      padding-left: 0;
+    }
+  }
 }
