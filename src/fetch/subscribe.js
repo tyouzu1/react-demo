@@ -7,3 +7,8 @@ export function postSubscribeData(type,id) {
     });
     return result
 }
+
+export function postSetSubscribeData(data) {
+    const result = post('/api/subscribe', data);
+    return result
+}

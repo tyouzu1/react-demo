@@ -2,17 +2,27 @@ import React from 'react'
 import SectionItem from './SectionItem'
 
 import './style.less'
+
 class Section extends React.Component {
 
     render() {
+        const {data, lsData, fixed,  setSubscribeFn} = this.props;
+
         return (
-            <div className="content-section">
+            <div className="content-section" style={this.props.style}>
                 <div className="content-list">
                     <dl>
                         <dd>
                             {
-                                this.props.data.map((item,index)=>
-                                    <SectionItem item = {item} key={index} fixed={this.props.fixed} />
+                                data.map((item, index) => {
+                                        const a = lsData.map(item => item.name);
+                                        let check = a.includes(item.name);
+                                        return <SectionItem item={item}
+                                                            key={index}
+                                                            fixed={fixed}
+                                                            setSubscribeFn={setSubscribeFn}
+                                                            check={check}/>
+                                    }
                                 )
                             }
                         </dd>

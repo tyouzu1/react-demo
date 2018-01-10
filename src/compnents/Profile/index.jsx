@@ -10,6 +10,7 @@ import LocalStore from '../../util/localStore'
 import { BD_NEWS_WEBAPP_SHOW_IMAGE } from '../../config/localStoreKey'
 
 import './style.less'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Profile extends React.Component {
 
@@ -25,34 +26,45 @@ class Profile extends React.Component {
     render() {
         const {image , displayname} =this.props.userInfo;
         return (
-            <div className="profile-container">
-                <div className="profile-header">
-                    <BackHeader/>
-                    <div className="profile-info">
-                        <div className="profile-img-container">
-                            <div className="img-wrapper">
-                                <img
-                                    src={image?image:''}/>
+            <ReactCSSTransitionGroup
+                transitionName="example"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnter={false}
+                transitionLeave={false}
+            >
+                <div key={1}>
+                    <div className="profile-container">
+                        <div className="profile-header">
+                            <BackHeader/>
+                            <div className="profile-info">
+                                <div className="profile-img-container">
+                                    <div className="img-wrapper">
+                                        <img
+                                            src={image?image:''}/>
+                                    </div>
+                                </div>
+                                <div className="profile-name">
+                                    <span>{displayname?displayname:'加载失败...'}</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="profile-name">
-                            <span>{displayname?displayname:'加载失败...'}</span>
+                        <div className="profile-nav">
+                            <NavItem icon="icon-bubbles4" content="我的消息" handleClick={Profile.handleClick.bind(this,'/profile/notice')}/>
+                            <NavItem icon="icon-star-empty" content="我的收藏" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
+                            <NavItem icon="icon-exit" content="退出登录" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
+                            <NavItem icon="icon-images" content="无图模式"
+                                     handleSelect={this.handleSelect.bind(this)}
+                                     btn
+                                     selected={this.props.userInfo.imageMode
+
+                                     }
+                            />
                         </div>
                     </div>
                 </div>
-                <div className="profile-nav">
-                    <NavItem icon="icon-bubbles4" content="我的消息" handleClick={Profile.handleClick.bind(this,'/profile/notice')}/>
-                    <NavItem icon="icon-star-empty" content="我的收藏" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
-                    <NavItem icon="icon-exit" content="退出登录" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
-                    <NavItem icon="icon-images" content="无图模式"
-                             handleSelect={this.handleSelect.bind(this)}
-                             btn
-                             selected={this.props.userInfo.imageMode
 
-                             }
-                    />
-                </div>
-            </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }

@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 import Loading from './Loading'
-import GoTop from  './GoTop'
+import GoTop from './GoTop'
 import {getCategoryData} from '../fetch/category'
 import {getUserInfoData} from '../fetch/userInfo'
 import * as categoryAction from '../actions/categoryAction';
@@ -30,7 +30,7 @@ class App extends React.Component {
             return res.json()
         }).then((json) => {
             // 把无图模式 imageMode 拼接到数据中 本地存储
-                let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
+            let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
             if (data == null) {
                 json.imageMode = false;
                 this.props.userInfoActions.update(json);
@@ -70,14 +70,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <GoTop/>
-                {
-                    this.state.userInfoInitDone && this.state.categoryInitDone
-                        ? this.props.children
-                        : <Loading />
-                }
-            </div>
+                <div>
+                    <GoTop/>
+                    {
+                        this.state.userInfoInitDone && this.state.categoryInitDone
+                            ? this.props.children
+                            : <Loading/>
+                    }
+                </div>
+
         )
     }
 }

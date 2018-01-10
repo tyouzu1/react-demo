@@ -5,7 +5,7 @@ module.exports = {
             name: '推荐'
         },
         {
-            type: 'baijia',
+            type: 'news',
             name: '百家',
         },
         {

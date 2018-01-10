@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import BackHeader from '../BackHeader'
 import Section from './subPage/Section'
@@ -26,7 +27,7 @@ class Subscribe extends React.Component {
         this.fetchData(1);
     }
 
-    mediaData(index){
+    mediaData(index) {
         let result = postSubscribeData('媒体', index);
         result.then(res => {
             return res.json()
@@ -40,7 +41,8 @@ class Subscribe extends React.Component {
             }
         });
     }
-    channelData(index){
+
+    channelData(index) {
         let result2 = postSubscribeData('频道', index);
         result2.then(res => {
             return res.json()
@@ -54,7 +56,8 @@ class Subscribe extends React.Component {
             }
         });
     }
-    tagData(index){
+
+    tagData(index) {
         let result3 = postSubscribeData('话题', index);
         result3.then(res => {
             return res.json()
@@ -68,7 +71,8 @@ class Subscribe extends React.Component {
             }
         });
     }
-    fetchData(index){
+
+    fetchData(index) {
         this.mediaData(index);
         this.channelData(index)
         this.tagData(index);
@@ -77,6 +81,7 @@ class Subscribe extends React.Component {
             lsData: lsData
         });
     }
+
     componentDidMount() {
         this.setState({
             index: 1
@@ -84,21 +89,47 @@ class Subscribe extends React.Component {
     }
 
     handleClick() {
-        if(this.state.index===1){
+        if (this.state.index === 1) {
             this.mediaData();
-        } else if(this.state.index===3){
+        } else if (this.state.index === 3) {
             this.tagData();
         }
     }
 
     handleSelect(index) {
         this.setState({
-            index:index
+            index: index
         })
+    }
+
+    setSubscribeFn(data,model) {
+        let newData = [].concat(this.state.lsData);
+        if(model){
+            newData.push(data);
+        }else if(!model){
+            newData = newData.filter(item=>
+                item.name!==data.name
+            )
+        }
+        this.setState({
+            lsData: newData
+        });
+        const categoryData = {
+            tag: newData,
+            push: []
+        }
+        this.props.categoryActions.update(categoryData);
     }
 
     render() {
         return (
+            <ReactCSSTransitionGroup
+                transitionName="example"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnter={false}
+                transitionLeave={false}
+            >
             <div>
                 <BackHeader title="订阅中心" link="/"/>
                 <Link to="/subscribe/search" className="subscribe-search">
@@ -106,32 +137,34 @@ class Subscribe extends React.Component {
                 </Link>
                 <div className="subscribe-search-content">
                     <div className="content-nav">
-                        <b className={"content-nav-items"+(this.state.index===1?' choose':'')} onClick={() => this.handleSelect(1)}>媒体</b>
-                        <b className={"content-nav-items"+(this.state.index===2?' choose':'')} onClick={() => this.handleSelect(2)}>频道</b>
-                        <b className={"content-nav-items"+(this.state.index===3?' choose':'')} onClick={() => this.handleSelect(3)}>话题</b>
-                        <b className={"refresh"+(this.state.index===2?'Dis':'')} onClick={()=>{
-                            if(this.state.index===2){
+                        <b className={"content-nav-items" + (this.state.index === 1 ? ' choose' : '')}
+                           onClick={() => this.handleSelect(1)}>媒体</b>
+                        <b className={"content-nav-items" + (this.state.index === 2 ? ' choose' : '')}
+                           onClick={() => this.handleSelect(2)}>频道</b>
+                        <b className={"content-nav-items" + (this.state.index === 3 ? ' choose' : '')}
+                           onClick={() => this.handleSelect(3)}>话题</b>
+                        <b className={"refresh" + (this.state.index === 2 ? 'Dis' : '')} onClick={() => {
+                            if (this.state.index === 2) {
                                 return
                             }
                             this.handleClick();
                         }}>换一批</b>
                     </div>
                     <div className="content-container">
-                        {
-                            this.state.index
-                                ? this.state.index === 1
-                                ? <Section data={this.state.mediaList}/>
-                                : this.state.index === 2
-                                    ? <Section data={this.state.channelList} fixed />
-                                    : this.state.index === 3
-                                        ? <Section data={this.state.tagList}/>
-                                        : null
-                                : null
-                        }
+                        <Section style={this.state.index===1?{display:'block'}:{display:'none'}}
+                            data={this.state.mediaList} lsData={this.state.lsData}
+                                 setSubscribeFn={this.setSubscribeFn.bind(this)}/>
+                        <Section style={this.state.index===2?{display:'block'}:{display:'none'}}
+                            data={this.state.channelList} lsData={this.state.lsData} fixed
+                                 setSubscribeFn={this.setSubscribeFn.bind(this)}/>
+                        <Section style={this.state.index===3?{display:'block'}:{display:'none'}}
+                            data={this.state.tagList} lsData={this.state.lsData}
+                                 setSubscribeFn={this.setSubscribeFn.bind(this)}/>
                     </div>
                     <Link to="/subscribe/manage" className="content-btn">管理我的订阅</Link>
                 </div>
             </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }
