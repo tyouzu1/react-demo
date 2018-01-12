@@ -14,7 +14,7 @@ import Search from '../compnents/Subscribe/subPage/Search'
 import Manage from '../compnents/Manage'
 import SearchPage from '../compnents/SearchPage'
 import SectionItemNews from '../compnents/Subscribe/subPage/SectionItemNews'
-
+import CommentDetail from '../compnents/NewsDetail/subPage/CommentDetail'
 class RouterMap extends React.Component {
 
     render() {
@@ -32,6 +32,7 @@ class RouterMap extends React.Component {
                     <Route path='/subscribe/search' component={Search}/>
                     <Route path='/searchpage/home' component={SearchPage}/>
                     <Route path='/subscribe/news/:name' component={SectionItemNews}/>
+                    <Route path='/comment/:id' component={CommentDetail}/>
                     <Route path='*' component={NotFound}/>
                 </Route>
             </Router>

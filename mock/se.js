@@ -17,6 +17,8 @@ const subscribe3 = require('./subscribe/index3.js')
 const subscribe4 = require('./subscribe/index4.js')
 const subscribe5 = require('./subscribe/index5.js')
 const detail = require('./news/detail.js')
+const comment = require('./news/comment.js')
+const count = require('./news/count.js')
 const Router = require('koa-router')
 const koaBody = require('koa-body');
 
@@ -51,6 +53,14 @@ page.get('/nav', async (ctx) => {
     const params = ctx.params
     console.log(params)
     ctx.body = detail
+}).get('/comment/:id',async(ctx)=>{
+    const params = ctx.params
+    console.log(params)
+    ctx.body = comment
+}).get('/commentCount/:id',async(ctx)=>{
+    const params = ctx.params
+    console.log(params,'count')
+    ctx.body = count
 })
 
 page.post('/addNews', koaBody(), async (ctx) => {
@@ -97,6 +107,14 @@ page.post('/addNews', koaBody(), async (ctx) => {
         }
     }
 
+}).post('/setComment',koaBody(),async(ctx) => {
+    const type = ctx.request.body.id ;
+    const id =  ctx.request.body.text ;
+    if (id){
+        ctx.body = {success:true,data:'发表成功'}
+    }else {
+        ctx.body = {success:false,data:'发表失败'}
+    }
 })
 // 装载所有子路由
 let router = new Router()
