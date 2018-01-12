@@ -9,7 +9,7 @@ import {getUserInfoData} from '../fetch/userInfo'
 import * as categoryAction from '../actions/categoryAction';
 import * as userInfoAction from '../actions/userInfoAction';
 import LocalStore from '../util/localStore'
-import {BD_NEWS_WEBAPP_SHOW_IMAGE} from '../config/localStoreKey'
+import {BD_NEWS_WEBAPP_SHOW_IMAGE, CHOSEN_READED_IDS} from '../config/localStoreKey'
 
 class App extends React.Component {
     state = {
@@ -20,6 +20,7 @@ class App extends React.Component {
     componentDidMount() {
         this.getUserInfo();
         this.getCategory();
+        LocalStore.removeItem(CHOSEN_READED_IDS);
     }
 
     getUserInfo() {
@@ -32,9 +33,9 @@ class App extends React.Component {
             // 把无图模式 imageMode 拼接到数据中 本地存储
             let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
             if (data == null) {
-                json.imageMode = false;
+                json.imageMode = true;
                 this.props.userInfoActions.update(json);
-                LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(false));
+                LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
             } else {
                 json.imageMode = data;
                 this.props.userInfoActions.update(json);

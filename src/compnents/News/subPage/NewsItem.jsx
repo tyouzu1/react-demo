@@ -1,7 +1,8 @@
 import React from 'react'
 import LazyLoad from 'react-lazyload';
 import {hashHistory} from 'react-router'
-
+import LocalStore from '../../../util/localStore'
+import { CHOSEN_READED_IDS } from '../../../config/localStoreKey'
 import './style.less'
 
 
@@ -22,14 +23,26 @@ const Bottom = ({site, type}) => (
 class NewsItem extends React.Component {
 
     handleClick(){
-        hashHistory.push('/detail/'+this.props.nid);
+       let local = LocalStore.getItem(CHOSEN_READED_IDS);
+       let id = this.props.data.nid;
+        let newLocal ;
+       if (local){
+           newLocal = JSON.parse(local);
+           newLocal.push(id);
+       }else {
+           newLocal = [];
+           newLocal.push(id);
+       }
+        LocalStore.setItem(CHOSEN_READED_IDS,JSON.stringify(newLocal));
+        hashHistory.push('/detail/'+id)
     }
 
     render() {
+        let id = JSON.parse(LocalStore.getItem(CHOSEN_READED_IDS))||[];
         if (!this.props.imageMode) {
             return (
                 <div className="news-list-item-container" onClick={()=>this.handleClick()}>
-                    <div className="news-list-item">
+                    <div className={"news-list-item"+(id.includes(this.props.data.nid)?' read':'')}>
                         <div className="item-main">
                             <div className="item-text">
                                 <p>{this.props.data.title}</p>
@@ -44,7 +57,7 @@ class NewsItem extends React.Component {
             const images = this.props.data.imageurls;
             return (
                 <div className="news-list-item-container" onClick={()=>this.handleClick()}>
-                    <div className="news-list-item">
+                    <div className={"news-list-item"+(id.includes(this.props.data.nid)?' read':'')}>
                         {
                             !images.length ? <div className="item-main">
                                     <div className="item-text">

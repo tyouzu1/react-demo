@@ -22,5 +22,16 @@ export default {
                 console.error('localStorage.setItem报错, ', ex.message)
             }
         }
+    },
+    removeItem: function (key) {
+        try {
+            // ios safari 无痕模式下，直接使用 localStorage.removeItem 会报错
+            localStorage.removeItem(key)
+        } catch (ex) {
+            // 开发环境下提示 error
+            if (__DEV__) {
+                console.error('localStorage.removeItem报错, ', ex.message)
+            }
+        }
     }
 }

@@ -2,7 +2,9 @@ import React from 'react'
 
 import './style.less'
 class Comment extends React.Component {
-
+    handleFavor(){
+        this.props.favor();
+    }
     render() {
 
         return (
@@ -12,7 +14,7 @@ class Comment extends React.Component {
                         <div className="comment-count">
                             <div className="comment-num" >1</div>
                         </div>
-                        <div className="favor-icon">
+                        <div className="favor-icon" onClick={()=>this.handleFavor()}>
                         </div>
                     </div>
                     <div className="comment-text-container">
