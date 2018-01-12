@@ -18,6 +18,7 @@ class NewsDetail extends React.Component {
     state = {
         data: [],
         fontSize: 1,
+        show:false
     }
 
     componentDidMount() {
@@ -26,15 +27,15 @@ class NewsDetail extends React.Component {
     }
 
     fetchData(id) {
-        const fontSize = parseInt(LocalStore.getItem(FONT_SIZE));
+        const fontSize = parseInt(LocalStore.getItem(FONT_SIZE))||2;
         let result = getNewsDetailData(id);
         result.then(res => {
             return res.json()
         }).then((json) => {
             this.setState({
-                item:json.data,
                 data: json.data.news,
-                fontSize: fontSize
+                fontSize: fontSize,
+                show:true
             })
         }).catch(ex => {
             if (__DEV__) {
@@ -66,20 +67,28 @@ class NewsDetail extends React.Component {
     }
 
     handleFavor(){
-        if (!this.props.collectList.includes(this.state.item)){
-            this.props.collectActions.addItem(this.state.item)
+        if (!this.props.collectList.includes(this.state.data[0])){
+            this.props.collectActions.addItem(this.state.data[0])
+        }else if (this.props.collectList.includes(this.state.data[0])){
+            this.props.collectActions.removeItem(this.state.data[0])
         }
     }
 
     render() {
-
+        let favor;
+        if(this.state.show){
+           favor = !!this.props.collectList.filter(item=>{
+               console.log(item.nid,this.state.data[0].nid,333)
+               return item.nid===this.state.data[0].nid
+           })[0];
+        }
         return (
             this.state.data.length
                 ? <div className={"font-size-" + this.state.fontSize}>
                     <div style={{position: 'relative', display: 'block'}}>
                         <DetailHeader/>
                         <Content data={this.state.data[0]} change={this.handleChange.bind(this)}/>
-                        <Comment favor={this.handleFavor.bind(this)} />
+                        {this.state.show&&<Comment favorFn={this.handleFavor.bind(this)} favor={favor?' done':''} />}
                     </div>
                 </div>
                 : <Loading/>

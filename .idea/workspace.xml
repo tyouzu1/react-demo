@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8f027e0-ad1b-4ada-97fa-632054213d8d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/actions/collectlistAction.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/contants/collectlistActionType.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/App.jsx" afterPath="$PROJECT_DIR$/src/compnents/App.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/News/subPage/NewsItem.jsx" afterPath="$PROJECT_DIR$/src/compnents/News/subPage/NewsItem.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/News/subPage/style.less" afterPath="$PROJECT_DIR$/src/compnents/News/subPage/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/collectlistAction.js" afterPath="$PROJECT_DIR$/src/actions/collectlistAction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx" afterPath="$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/NewsDetail/index.jsx" afterPath="$PROJECT_DIR$/src/compnents/NewsDetail/index.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx" afterPath="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/localStoreKey.js" afterPath="$PROJECT_DIR$/src/config/localStoreKey.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less" afterPath="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/Profile/subPage/Favor.jsx" afterPath="$PROJECT_DIR$/src/compnents/Profile/subPage/Favor.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/contants/collectlistActionType.js" afterPath="$PROJECT_DIR$/src/contants/collectlistActionType.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/collectReducer.js" afterPath="$PROJECT_DIR$/src/reducers/collectReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/index.js" afterPath="$PROJECT_DIR$/src/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/localStore.js" afterPath="$PROJECT_DIR$/src/util/localStore.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,31 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/compnents/Home/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/compnents/Header/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="87" column="1" lean-forward="true" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
+            <state relative-caret-position="335">
+              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -66,9 +42,62 @@
       <file leaf-file-name="Comment.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="269" column="7" lean-forward="true" selection-start-line="269" selection-start-column="7" selection-end-line="269" selection-end-column="7" />
+              <folding>
+                <element signature="e#227#3896#0" expanded="false" />
+                <element signature="e#3916#4329#0" expanded="false" />
+                <element signature="e#8267#8453#0" expanded="false" />
+                <element signature="e#8615#10878#0" expanded="false" />
+                <element signature="e#11434#12825#0" expanded="false" />
+                <element signature="e#16066#19021#2" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compnents/App.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="37">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Favor.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compnents/Profile/subPage/Favor.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewsList.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/compnents/Manage/subPage/ManageList.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/Manage/index.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/Manage/subPage/ManageItem.jsx" />
         <option value="$PROJECT_DIR$/webpack.production.config.js" />
@@ -130,7 +158,6 @@
         <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/detailHeader.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/BackHeader/index.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/DetailHeader.jsx" />
-        <option value="$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/ToTop/index.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/GoTop/index.jsx" />
         <option value="$PROJECT_DIR$/mock/se.js" />
@@ -139,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/compnents/Subscribe/subPage/style.less" />
         <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Content.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/GoTop/style.less" />
-        <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less" />
         <option value="$PROJECT_DIR$/src/compnents/NewsDetail/style.less" />
         <option value="$PROJECT_DIR$/src/fetch/subscribe.js" />
         <option value="$PROJECT_DIR$/mock/nav/info.js" />
@@ -159,10 +185,13 @@
         <option value="$PROJECT_DIR$/src/compnents/News/subPage/NewsItem.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/News/index.jsx" />
         <option value="$PROJECT_DIR$/src/compnents/App.jsx" />
+        <option value="$PROJECT_DIR$/src/reducers/index.js" />
+        <option value="$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx" />
+        <option value="$PROJECT_DIR$/src/compnents/Profile/subPage/Favor.jsx" />
+        <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less" />
+        <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx" />
         <option value="$PROJECT_DIR$/src/contants/collectlistActionType.js" />
         <option value="$PROJECT_DIR$/src/actions/collectlistAction.js" />
-        <option value="$PROJECT_DIR$/src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx" />
         <option value="$PROJECT_DIR$/src/reducers/collectReducer.js" />
         <option value="$PROJECT_DIR$/src/compnents/NewsDetail/index.jsx" />
       </list>
@@ -253,7 +282,14 @@
               <item name="react-demo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="compnents" type="462c0819:PsiDirectoryNode" />
-              <item name="NewsDetail" type="462c0819:PsiDirectoryNode" />
+              <item name="Profile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compnents" type="462c0819:PsiDirectoryNode" />
+              <item name="Profile" type="462c0819:PsiDirectoryNode" />
               <item name="subPage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -372,7 +408,7 @@
       <workItem from="1515463940723" duration="25142000" />
       <workItem from="1515548940138" duration="9258000" />
       <workItem from="1515637970451" duration="3847000" />
-      <workItem from="1515724003687" duration="6098000" />
+      <workItem from="1515724003687" duration="9303000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1514520791208</created>
@@ -472,11 +508,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515556412246</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="收藏功能。">
+      <created>1515730639311</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1515730639311</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165126000" />
+    <option name="totallyTimeSpent" value="168331000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,18 +579,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/DetailHeader.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fetch/news.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -601,26 +637,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="17" lean-forward="true" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="271" column="28" lean-forward="true" selection-start-line="271" selection-start-column="28" selection-end-line="271" selection-end-column="28" />
-          <folding>
-            <element signature="e#227#3896#0" expanded="false" />
-            <element signature="e#670#3141#1" expanded="false" />
-            <element signature="e#3916#4329#0" expanded="false" />
-            <element signature="e#4654#5753#1" expanded="false" />
-            <element signature="e#6241#7528#1" expanded="false" />
-            <element signature="e#8267#8453#0" expanded="false" />
-            <element signature="e#8615#10878#0" expanded="false" />
-            <element signature="e#11389#16031#0" expanded="false" />
-            <element signature="e#11434#12825#0" expanded="false" />
-            <element signature="e#11587#12542#1" expanded="false" />
-            <element signature="e#12973#15900#2" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,24 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="25" lean-forward="true" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/News/subPage/NewsItem.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/contants/categoryActionType.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -876,14 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/contants/collectlistActionType.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -922,32 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/Home/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/App.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="91" column="3" lean-forward="false" selection-start-line="91" selection-start-column="3" selection-end-line="91" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compnents/Header/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -956,26 +920,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/Home/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/News/subPage/NewsItem.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="269" column="7" lean-forward="true" selection-start-line="269" selection-start-column="7" selection-end-line="269" selection-end-column="7" />
+          <folding>
+            <element signature="e#227#3896#0" expanded="false" />
+            <element signature="e#3916#4329#0" expanded="false" />
+            <element signature="e#8267#8453#0" expanded="false" />
+            <element signature="e#8615#10878#0" expanded="false" />
+            <element signature="e#11434#12825#0" expanded="false" />
+            <element signature="e#16066#19021#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/contants/collectlistActionType.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/collectlistAction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="65" lean-forward="false" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="65" />
+        <state relative-caret-position="54">
+          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/collectReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/News/subPage/NewsList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/Profile/subPage/Favor.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/subPage/Comment.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/compnents/NewsDetail/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="87" column="1" lean-forward="true" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
+        <state relative-caret-position="335">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
