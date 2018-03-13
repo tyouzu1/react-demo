@@ -116,10 +116,38 @@ page.post('/addNews', koaBody(), async (ctx) => {
         ctx.body = {success:false,data:'发表失败'}
     }
 })
+
+const session = require('koa-session-minimal')
+const MysqlStore = require('koa-mysql-session')
+const config = require('./user/config')
+const bodyParser = require('koa-bodyparser')
+
+const userInfoController = require('./user/controllers/user-info')
+page.get('/getUserInfo',userInfoController.getLoginUserInfo)
+    .post('/signIn', koaBody(),  userInfoController.signIn)
+    .post('/signUp', koaBody(),  userInfoController.signUp)
+
+// session存储配置
+const sessionMysqlConfig= {
+    user: config.database.USERNAME,
+    password: config.database.PASSWORD,
+    database: config.database.DATABASE,
+    host: config.database.HOST,
+}
+// 配置ctx.body解析中间件
+// app.use(bodyParser())
+// 配置session中间件
+app.use(session({
+    key: 'USER_SID',
+    store: new MysqlStore(sessionMysqlConfig)
+}))
+
+
 // 装载所有子路由
 let router = new Router()
 router.use('/', home.routes(), home.allowedMethods())
 router.use('/api', page.routes(), page.allowedMethods())
+
 
 // 加载路由中间件
 app.use(router.routes()).use(router.allowedMethods())
@@ -162,3 +190,5 @@ function parseQueryStr(queryStr) {
 // app.listen(3000, () => {
 //     console.log('[demo] request post is starting at port 3000')
 // })
+
+
