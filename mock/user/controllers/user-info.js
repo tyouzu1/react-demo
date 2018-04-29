@@ -110,11 +110,11 @@ module.exports = {
     let userName = session.userName
 
     console.log( 'session=', session )
-
+   const body = require('../../userInfo/info')
     let result = {
       success: false,
       message: '',
-      data: null,
+      data: body,
     }
     if ( isLogin === true && userName ) {
       let userInfo = await userInfoService.getUserInfoByUserName( userName )
