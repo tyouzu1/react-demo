@@ -4,7 +4,7 @@ import { hashHistory,Link } from 'react-router'
 import { connect } from 'react-redux'
 import {postSignIn} from '../../fetch/userInfo'
 import LocalStore from '../../util/localStore'
-import { BD_NEWS_WEBAPP_SHOW_IMAGE } from '../../config/localStoreKey'
+import { BD_NEWS_WEBAPP_SHOW_IMAGE,LOGIN } from '../../config/localStoreKey'
 import * as userInfoAction from '../../actions/userInfoAction';
 import BackHeader from '../BackHeader'
 import './style.less'
@@ -21,7 +21,6 @@ class Login extends React.Component {
         userResult.then(res => {
             return res.json()
         }).then((json) => {
-            let res = false
             if(json.code===0){
                 // 把无图模式 imageMode 拼接到数据中 本地存储
                 let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
@@ -33,14 +32,12 @@ class Login extends React.Component {
                     json.imageMode = data;
                     this.props.userInfoActions.update(json.data);
                 }
-                res = true
+                console.log(1231231)
+                LocalStore.setItem(LOGIN, JSON.stringify(true));
+                hashHistory.push('/profile/home');
             }else {
                 alert(json.message);
-                res = false
             }
-            return res
-        }).then((res)=>{
-            res&&hashHistory.push('/profile/home');
         }).catch(ex => {
             if (__DEV__) {
                 console.error('获取user数据报错, ', ex.message)

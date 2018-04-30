@@ -111,7 +111,7 @@ module.exports = {
     let session = ctx.session
     let isLogin = session.isLogin
     let userName = session.userName
-
+console.log(session)
     console.log( 'session=', session )
     let result = {
       success: false,
@@ -123,6 +123,7 @@ module.exports = {
       if ( userInfo ) {
         result.data = userInfo
         result.success = true
+          result.data= body
       } else {
         result.message = userCode.FAIL_USER_NO_LOGIN
       }

@@ -7,7 +7,7 @@ import BackHeader from '../BackHeader'
 import NavItem from './subPage/NavItem'
 import * as userInfoAction from '../../actions/userInfoAction';
 import LocalStore from '../../util/localStore'
-import { BD_NEWS_WEBAPP_SHOW_IMAGE } from '../../config/localStoreKey'
+import { BD_NEWS_WEBAPP_SHOW_IMAGE,LOGIN } from '../../config/localStoreKey'
 
 import './style.less'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -35,6 +35,7 @@ class Profile extends React.Component {
         let logout = confirm("你确定要退出登录吗？")
         if(logout){
             this.props.userInfoActions.logout();
+            LocalStore.setItem(LOGIN, JSON.stringify(false));
         }else {
             console.log('取消');
         }
