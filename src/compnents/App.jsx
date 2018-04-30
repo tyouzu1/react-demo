@@ -22,10 +22,7 @@ class App extends React.Component {
         this.getCategory();
         LocalStore.removeItem(CHOSEN_READED_IDS);
     }
-
-
     getUserInfo() {
-        console.log(1243124124124)
         //TODO 将fetch请求 写到 redux actions 中
         //加载完成后更新redux数据
         let userResult = getUserInfoData();
@@ -35,11 +32,11 @@ class App extends React.Component {
             // 把无图模式 imageMode 拼接到数据中 本地存储
             let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
             if (data == null) {
-                json.imageMode = true;
+                json.data.imageMode = true;
                 this.props.userInfoActions.update(json.data);
                 LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
             } else {
-                json.imageMode = data;
+                json.data.imageMode = data;
                 this.props.userInfoActions.update(json.data);
             }
             // 更改状态

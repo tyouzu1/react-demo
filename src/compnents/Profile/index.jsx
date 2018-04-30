@@ -23,6 +23,15 @@ class Profile extends React.Component {
         LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(!this.props.userInfo.imageMode));
     }
 
+    handleLogOut(){
+        let logout = confirm("你确定要退出登录吗？")
+        if(logout){
+            this.props.userInfoActions
+        }else {
+            console.log(2222)
+        }
+    }
+
     render() {
         const {image , displayname} =this.props.userInfo;
         return (
@@ -52,7 +61,7 @@ class Profile extends React.Component {
                         <div className="profile-nav">
                             <NavItem icon="icon-bubbles4" content="我的消息" handleClick={Profile.handleClick.bind(this,'/profile/notice')}/>
                             <NavItem icon="icon-star-empty" content="我的收藏" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
-                            <NavItem icon="icon-exit" content="退出登录" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
+                            <NavItem icon="icon-exit" content="退出登录" handleClick={this.handleLogOut.bind(this)}/>
                             <NavItem icon="icon-images" content="无图模式"
                                      handleSelect={this.handleSelect.bind(this)}
                                      btn

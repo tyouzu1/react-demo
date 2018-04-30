@@ -28,10 +28,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html'
         }),
-
         // 热加载插件
         new webpack.HotModuleReplacementPlugin(),
-
         // 打开浏览器
         new OpenBrowserPlugin({
             url: 'http://localhost:8080'
