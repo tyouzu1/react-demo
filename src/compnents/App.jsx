@@ -9,7 +9,7 @@ import {getUserInfoData} from '../fetch/userInfo'
 import * as categoryAction from '../actions/categoryAction';
 import * as userInfoAction from '../actions/userInfoAction';
 import LocalStore from '../util/localStore'
-import {BD_NEWS_WEBAPP_SHOW_IMAGE, CHOSEN_READED_IDS} from '../config/localStoreKey'
+import {BD_NEWS_WEBAPP_SHOW_IMAGE, CHOSEN_READED_IDS,LOGIN} from '../config/localStoreKey'
 
 class App extends React.Component {
     state = {
@@ -18,13 +18,22 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getUserInfo();
+        let login = JSON.parse(LocalStore.getItem(LOGIN));
+        if(login){
+            this.getUserInfo();
+        }else {
+            this.setState({
+                userInfoInitDone: true
+            });
+            LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
+        }
         this.getCategory();
         LocalStore.removeItem(CHOSEN_READED_IDS);
     }
     getUserInfo() {
         //TODO 将fetch请求 写到 redux actions 中
         //加载完成后更新redux数据
+
         let userResult = getUserInfoData();
         userResult.then(res => {
             return res.json()

@@ -1,5 +1,6 @@
 const userInfoService = require('../services/user-info')
 const userCode = require('../server/codes/user')
+const body = require('../../userInfo/info')
 
 module.exports = {
 
@@ -8,7 +9,6 @@ module.exports = {
    * @param  {obejct} ctx 上下文对象
    */
   async signIn( ctx ) {
-    console.log(ctx.request.body)
     let formData = ctx.request.body
     let result = {
       success: false,
@@ -18,10 +18,12 @@ module.exports = {
     }
 
     let userResult = await userInfoService.signIn( formData )
-
+      console.log(formData,2411234,userResult)
     if ( userResult ) {
       if ( formData.userName === userResult.name ) {
         result.success = true
+          result.data=body
+          result.code=0
       } else {
         result.message = userCode.FAIL_USER_NAME_OR_PASSWORD_ERROR
         result.code = 'FAIL_USER_NAME_OR_PASSWORD_ERROR'
@@ -93,6 +95,7 @@ module.exports = {
 
     if ( userResult && userResult.insertId * 1 > 0) {
       result.success = true
+        result.code = 0
     } else {
       result.message = userCode.ERROR_SYS
     }
@@ -110,7 +113,6 @@ module.exports = {
     let userName = session.userName
 
     console.log( 'session=', session )
-   const body = require('../../userInfo/info')
     let result = {
       success: false,
       message: '',

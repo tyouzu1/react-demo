@@ -2,22 +2,24 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { hashHistory,Link } from 'react-router'
 import { connect } from 'react-redux'
-import {postSignIn} from '../../fetch/userInfo'
+import {postSignUp} from '../../fetch/userInfo'
 import LocalStore from '../../util/localStore'
 import { BD_NEWS_WEBAPP_SHOW_IMAGE } from '../../config/localStoreKey'
 import * as userInfoAction from '../../actions/userInfoAction';
 import BackHeader from '../BackHeader'
 import './style.less'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-class Login extends React.Component {
+class Register extends React.Component {
 
     state={
         name:'',
-        password:''
+        password:'',
+        confirmPassword:'',
+        email:'',
     }
 
     handleClick (){
-        let userResult = postSignIn(this.state);
+        let userResult = postSignUp(this.state);
         userResult.then(res => {
             return res.json()
         }).then((json) => {
@@ -57,6 +59,16 @@ class Login extends React.Component {
             password:e.target.value
         })
     }
+    handleChangeCPwd(e){
+        this.setState({
+            confirmPassword:e.target.value
+        })
+    }
+    handleChangeEmail(e){
+        this.setState({
+            email:e.target.value
+        })
+    }
     render() {
         return (
             <div>
@@ -67,17 +79,19 @@ class Login extends React.Component {
                     transitionEnter={false}
                     transitionLeave={false}
                 >
-                        <div key={1}>
-                            <div className="login-container">
-                                <BackHeader  to='/profile/home'  title="登录"/>
-                                <div className="login-info">
-                                       <input placeholder="请输入帐号" type="text" value={this.state.name} onChange={this.handleChangeName.bind(this)}/>
-                                        <input  placeholder="请输入密码" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />
-                                        <input type="button" value="登录" onClick={this.handleClick.bind(this)}/>
-                                    <Link  to="/register" className="register-btn" >去注册</Link>
-                                </div>
+                    <div key={1}>
+                        <div className="login-container">
+                            <BackHeader to='/profile/home' title="登录"/>
+                            <div className="login-info">
+                                <input placeholder="请输入帐号" type="text" value={this.state.name} onChange={this.handleChangeName.bind(this)}/>
+                                <input  placeholder="请输入密码" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />
+                                <input placeholder="请再次输入你的密码" type="password" value={this.state.confirmPassword} onChange={this.handleChangeCPwd.bind(this)}/>
+                                <input  placeholder="请输入邮箱" type="email" value={this.state.email} onChange={this.handleChangeEmail.bind(this)} />
+                                <input type="button" value="注册" onClick={this.handleClick.bind(this)}/>
+                                <Link   to="/login" className="register-btn" >去登录</Link>
                             </div>
                         </div>
+                    </div>
 
 
                 </ReactCSSTransitionGroup>
@@ -95,4 +109,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Login);
+)(Register);

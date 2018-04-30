@@ -6,23 +6,21 @@ export function getUserInfoData() {
     return result;
 }
 
-export function postSignUp(userName,password,email,confirmPassword) {
+export function postSignUp(obj) {
     const result = post('/api/signUp', {
-        userName,
-        password,
-        confirmPassword,
-        email
+        userName:obj.name,
+        password:obj.password,
+        confirmPassword:obj.confirmPassword,
+        email:obj.email,
     });
 
     return result;
 }
 
-export function postSignIn(userName,password,email,confirmPassword) {
+export function postSignIn(obj) {
     const result = post('/api/signIn', {
-        userName,
-        password,
-        confirmPassword,
-        email
+        userName:obj.name,
+        password:obj.password,
     });
 
     return result;

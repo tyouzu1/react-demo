@@ -4,11 +4,13 @@ import './style.less'
 class Back extends React.Component {
 
     handleBack = () => {
-        if(this.props.link){
+        if(this.props.to){
+            hashHistory.push(this.props.to);
+        }else if(this.props.link){
             hashHistory.push('/');
-            return;
+        }else {
+            window.history.back();
         }
-        window.history.back();
     }
 
     render (){

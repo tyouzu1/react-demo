@@ -16,6 +16,7 @@ import SearchPage from '../compnents/SearchPage'
 import SectionItemNews from '../compnents/Subscribe/subPage/SectionItemNews'
 import CommentDetail from '../compnents/NewsDetail/subPage/CommentDetail'
 import Login from '../compnents/Login'
+import Register from '../compnents/Login/register.jsx'
 class RouterMap extends React.Component {
 
     render() {
@@ -35,6 +36,7 @@ class RouterMap extends React.Component {
                     <Route path='/subscribe/news/:name' component={SectionItemNews}/>
                     <Route path='/comment/:id' component={CommentDetail}/>
                     <Route path='/login' component={Login}/>
+                    <Route path='/register' component={Register}/>
                     <Route path='*' component={NotFound}/>
                 </Route>
             </Router>

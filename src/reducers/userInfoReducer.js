@@ -1,4 +1,4 @@
-import {USER_INFO,USER_INFO_IMAGE_MODEL} from "../contants/userInfoActionType";
+import {USER_INFO,USER_INFO_IMAGE_MODEL,USER_INFO_LOGOUT} from "../contants/userInfoActionType";
 
 const initialState = {};
 
@@ -10,6 +10,10 @@ export default function userInfo(state = initialState ,action) {
             return {
                 ...state,
                 imageMode:action.data
+            };
+        case USER_INFO_LOGOUT:
+            return {
+                imageMode:true,
             };
         default:
             return state;

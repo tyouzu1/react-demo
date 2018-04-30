@@ -17,6 +17,7 @@ function obj2params(obj) {
 
 // 发送 post 请求
 export function post(url, paramsObj) {
+    console.log(paramsObj)
     let result = fetch(url, {
         method: 'POST',
         credentials: 'include',
