@@ -1,11 +1,5 @@
 ## react-demo
 
-#### 先安装node.js（自动捆绑npm），安装完成在命令行内执行node -v，查看版本，执行npm -v，查看npm版本
-
-#### 进入项目目录 react-demo 打开命令行 执行命令
-
-#### package.json里面 script字段内的，都是可执行的脚本命令。
-
 ```js
 
   "scripts": {
@@ -22,7 +16,7 @@
 ```js
 npm install （加载所需的模块包）
 
-npm init_sql（数据库配置为/mock/user/config.js）
+npm run init_sql（数据库配置为/mock/user/config.js）
 
 npm run mock (打开node服务器)
 
