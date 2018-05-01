@@ -24,18 +24,7 @@ class Register extends React.Component {
             return res.json()
         }).then((json) => {
             if(json.code===0){
-                // 把无图模式 imageMode 拼接到数据中 本地存储
-                let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
-                if (data == null) {
-                    json.imageMode = true;
-                    this.props.userInfoActions.update(json.data);
-                    LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
-                } else {
-                    json.imageMode = data;
-                    this.props.userInfoActions.update(json.data);
-                }
-                LocalStore.setItem(LOGIN, JSON.stringify(true));
-                hashHistory.push('/profile/home');
+                alert('注册成功');
             }else {
                 alert(json.message);
             }
