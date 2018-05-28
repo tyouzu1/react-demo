@@ -34,8 +34,10 @@ class Profile extends React.Component {
     handleLogOut(){
         let logout = confirm("你确定要退出登录吗？")
         if(logout){
+            LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
+            this.props.userInfoActions.updateImageModel(true);
             this.props.userInfoActions.logout();
-            LocalStore.setItem(LOGIN, JSON.stringify(false));
+            LocalStore.removeItem(LOGIN);
         }else {
             console.log('取消');
         }
@@ -73,7 +75,7 @@ class Profile extends React.Component {
                             </div>
                         </div>
                         <div className="profile-nav">
-                            <NavItem icon="icon-bubbles4" content="我的消息" handleClick={Profile.handleClick.bind(this,'/profile/notice')}/>
+                            <NavItem icon="icon-bubbles4" content="我的评论" handleClick={Profile.handleClick.bind(this,'/profile/notice')}/>
                             <NavItem icon="icon-star-empty" content="我的收藏" handleClick={Profile.handleClick.bind(this,'/profile/favor')}/>
                             {isLogIn&&<NavItem icon="icon-exit" content="退出登录" handleClick={this.handleLogOut.bind(this)}/>}
                             <NavItem icon="icon-images" content="无图模式"

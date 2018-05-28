@@ -7,6 +7,7 @@ import Content from './subPage/Content'
 import Comment from './subPage/Comment'
 import Loading from '../Loading'
 import {getNewsDetailData, getNewsCommentCountData} from '../../fetch/news'
+
 import LocalStore from '../../util/localStore'
 import {FONT_SIZE} from '../../config/localStoreKey'
 import * as collectAction from '../../actions/collectlistAction';
@@ -19,7 +20,11 @@ class NewsDetail extends React.Component {
         data: [],
         fontSize: 1,
         show:false,
-        commentCount:0
+        commentCount:0,
+        like:{
+            count:0,
+            like:false
+        }
     }
 
     componentDidMount() {
@@ -53,7 +58,8 @@ class NewsDetail extends React.Component {
         }).then((json) => {
             console.log(json)
             this.setState({
-                commentCount:json.data.count
+                commentCount:json.data.count,
+                like:json.data.like,
             })
         }).catch(ex => {
             if (__DEV__) {
@@ -61,6 +67,7 @@ class NewsDetail extends React.Component {
             }
         });
     }
+
 
     handleChange(model) {
         if (model) {
@@ -85,10 +92,22 @@ class NewsDetail extends React.Component {
     }
 
     handleFavor(){
-        if (!this.props.collectList.includes(this.state.data[0])){
-            this.props.collectActions.addItem(this.state.data[0])
-        }else if (this.props.collectList.includes(this.state.data[0])){
-            this.props.collectActions.removeItem(this.state.data[0])
+        let data = {
+            abs:this.state.data[0].abs,
+            imageurls:this.state.data[0].imageurls,
+            nid:this.state.data[0].nid,
+            site:this.state.data[0].site,
+            title:this.state.data[0].title,
+            url:this.state.data[0].url,
+            tag:this.state.data[0].tag,
+            type:this.state.data[0].type,
+        }
+        const include = this.props.collectList.filter(item=>item.nid==this.state.data[0].nid);
+        console.log(!!include.length)
+        if (!!include.length){
+            this.props.collectActions.removeItem(data)
+        }else{
+            this.props.collectActions.addItem(data)
         }
     }
 
@@ -107,8 +126,13 @@ class NewsDetail extends React.Component {
                 ? <div className={"font-size-" + this.state.fontSize}>
                     <div style={{position: 'relative', display: 'block'}}>
                         <DetailHeader/>
-                        <Content data={this.state.data[0]} change={this.handleChange.bind(this)}/>
-                        {this.state.show&&<Comment id={id} commentCount={this.state.commentCount} favorFn={this.handleFavor.bind(this)} favor={favor?' done':''} />}
+                        <Content data={this.state.data[0]} login={this.props.userInfo.isLogIn} change={this.handleChange.bind(this)}/>
+                        {this.state.show&&<Comment 
+                        id={id}
+                         login={this.props.userInfo.isLogIn} 
+                         like={this.state.like} 
+                         commentCount={this.state.commentCount} 
+                         favorFn={this.handleFavor.bind(this)} favor={favor?' done':''} />}
                     </div>
                 </div>
                 : <Loading/>
@@ -116,7 +140,8 @@ class NewsDetail extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    collectList:state.collectList
+    collectList:state.collectList,
+    userInfo:state.userInfo
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -27,6 +27,7 @@ class News extends React.Component {
     componentWillMount() {
         console.log('新闻内容WillMount');
         this.fetchData(this.props.location);
+        window.fetchDataNow = this.fetchData.bind(this);
     }
 
     componentDidMount() {
@@ -53,6 +54,7 @@ class News extends React.Component {
     }
 
     fetchData(location) {
+        console.log(location)
         this.setState({
             initDone: false,
         });

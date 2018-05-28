@@ -1,9 +1,10 @@
 import {post} from './post'
 
-export function postSubscribeData(type,id) {
+export function postSubscribeData(type,id,key) {
     const result = post('/api/subscribe', {
         type: type,
-        id:id
+        id:id,
+        key:key||''
     });
     return result
 }

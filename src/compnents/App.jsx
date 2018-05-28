@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import Loading from './Loading'
 import GoTop from './GoTop'
 import {getCategoryData} from '../fetch/category'
-import {getUserInfoData} from '../fetch/userInfo'
+import {postUserInfoData} from '../fetch/userInfo'
 import * as categoryAction from '../actions/categoryAction';
 import * as userInfoAction from '../actions/userInfoAction';
 import LocalStore from '../util/localStore'
@@ -18,7 +18,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        let login = JSON.parse(LocalStore.getItem(LOGIN));
+        let login = LocalStore.getItem(LOGIN);
         if(login){
             this.getUserInfo();
         }else {
@@ -34,7 +34,7 @@ class App extends React.Component {
         //TODO 将fetch请求 写到 redux actions 中
         //加载完成后更新redux数据
 
-        let userResult = getUserInfoData();
+        let userResult = postUserInfoData();
         userResult.then(res => {
             return res.json()
         }).then((json) => {

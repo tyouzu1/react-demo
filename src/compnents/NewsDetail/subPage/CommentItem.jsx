@@ -41,10 +41,15 @@ class CommentItem extends React.Component {
         })
     }
     handleSent(){
-        this.setState({
-            show:false
-        });
-        this.props.sentFn(`${this.state.text}//@${this.props.data.user_name}`)
+        if(this.state.text){
+            this.props.sentFn(`${this.state.text}//@${this.props.data.user_name}`)
+            this.setState({
+                show:false,
+                text:'',
+            });
+        }else{
+            alert('不能发送空的消息');
+        }
     }
     handleChange(e){
         this.setState({

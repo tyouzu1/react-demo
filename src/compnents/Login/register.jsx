@@ -16,6 +16,7 @@ class Register extends React.Component {
         password:'',
         confirmPassword:'',
         email:'',
+        nick:''
     }
 
     handleClick (){
@@ -25,6 +26,7 @@ class Register extends React.Component {
         }).then((json) => {
             if(json.code===0){
                 alert('注册成功');
+                window.history.back();
             }else {
                 alert(json.message);
             }
@@ -49,6 +51,11 @@ class Register extends React.Component {
             confirmPassword:e.target.value
         })
     }
+    handleChangeNick(e){
+        this.setState({
+            nick:e.target.value
+        })
+    }
     handleChangeEmail(e){
         this.setState({
             email:e.target.value
@@ -66,14 +73,15 @@ class Register extends React.Component {
                 >
                     <div key={1}>
                         <div className="login-container">
-                            <BackHeader to='/profile/home' title="登录"/>
+                            <BackHeader  to={this.props.params.back?'':'/profile/home'} title="注册"/>
                             <div className="login-info">
                                 <input placeholder="请输入帐号" type="text" value={this.state.name} onChange={this.handleChangeName.bind(this)}/>
+                                <input placeholder="请输入昵称" type="text" value={this.state.nick} onChange={this.handleChangeNick.bind(this)}/>
                                 <input  placeholder="请输入密码" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />
                                 <input placeholder="请再次输入你的密码" type="password" value={this.state.confirmPassword} onChange={this.handleChangeCPwd.bind(this)}/>
                                 <input  placeholder="请输入邮箱" type="email" value={this.state.email} onChange={this.handleChangeEmail.bind(this)} />
                                 <input type="button" value="注册" onClick={this.handleClick.bind(this)}/>
-                                <Link   to="/login" className="register-btn" >去登录</Link>
+                                <Link to="/login" className="register-btn" >去登录</Link>
                             </div>
                         </div>
                     </div>

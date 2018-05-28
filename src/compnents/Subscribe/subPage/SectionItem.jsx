@@ -5,19 +5,8 @@ import {postSetSubscribeData} from '../../../fetch/subscribe'
 
 import './style.less'
 class SectionItem extends React.Component {
-    state={
-        className:false
-    }
-    componentWillMount(){
-        this.setState({
-            className:this.props.check
-        })
-    }
     handleChange(){
-        this.props.setSubscribeFn(this.props.item,!this.state.className);
-        this.setState({
-            className:!this.state.className
-        })
+        this.props.setSubscribeFn(this.props.item,!this.props.check);
     }
     setData(){
         let result = postSetSubscribeData();
@@ -46,12 +35,12 @@ class SectionItem extends React.Component {
        if (this.state!==nextState){
            return true
        }
-        return this.props.item !== nextProps.item;
+        return this.props.item.name !== nextProps.item.name;
     }
     render() {
         return (
-            <div className="item-wrapper">
-                <div className={"item"+(this.state.className?" off":" on")}>
+            <div className="item-wrapper" style={{width:this.props.search?'100%':''}}>
+                <div className={"item"+(this.props.check?" off":" on")}>
                     <span className="name" onClick={()=>this.handleClick()}>{this.props.item.name}</span>
                     <span className="icon" onClick={()=>this.handleChange()}>
                     </span>

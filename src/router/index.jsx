@@ -32,11 +32,11 @@ class RouterMap extends React.Component {
                     <Route path='/subscribe/home' component={Subscribe}/>
                     <Route path='/subscribe/manage' component={Manage}/>
                     <Route path='/subscribe/search' component={Search}/>
-                    <Route path='/searchpage/home' component={SearchPage}/>
+                    <Route path='/searchpage/home(/:key)' component={SearchPage}/>
                     <Route path='/subscribe/news/:name' component={SectionItemNews}/>
                     <Route path='/comment/:id' component={CommentDetail}/>
-                    <Route path='/login' component={Login}/>
-                    <Route path='/register' component={Register}/>
+                    <Route path='/login(/:back)' component={Login}/>
+                    <Route path='/register(/:back)' component={Register}/>
                     <Route path='*' component={NotFound}/>
                 </Route>
             </Router>

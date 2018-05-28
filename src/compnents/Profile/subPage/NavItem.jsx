@@ -3,11 +3,11 @@ import './style.less'
 
 class NavItem extends React.Component {
 
-    componentDidMount() {
-        if (this.props.btn) {
+    // componentDidMount() {
+    //     if (this.props.btn) {
 
-        }
-    }
+    //     }
+    // }
 
     render() {
         const {icon, content, handleClick} = this.props;
@@ -20,7 +20,7 @@ class NavItem extends React.Component {
                 <div className="profile-btn"
                      style={this.props.selected
                          ? {}
-                         : {borderColor: '#3e98f0'}
+                         : {borderColor: '#394551'}
                      } onClick={() => this.props.handleSelect()}>
                     <i className={this.props.selected
                         ? ''

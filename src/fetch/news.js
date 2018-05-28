@@ -23,8 +23,18 @@ export function postAddNewsData(page) {
     return result
 }
 
+export function getNoticeData(id) {
+    const result = get('/api/getNotice/'+id);
+    return result;
+}
+
 export function getNewsDetailData(id) {
     const result = get('/api/detail/'+id);
+    return result;
+}
+
+export function getNewsLike(id,like) {
+    const result = get('/api/like/'+id + '/' +like);
     return result;
 }
 
@@ -36,11 +46,11 @@ export function getNewsCommentCountData(id) {
     const result = get('/api/commentCount/'+id);
     return result;
 }
-export function postNewsCommentData(id,text) {
+export function postNewsCommentData(id,data) {
     const result = post('/api/setComment', {
         id: id,
-        text: text,
+        data: JSON.stringify(data),
     });
-
     return result;
 }
+

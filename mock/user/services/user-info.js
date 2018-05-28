@@ -57,7 +57,8 @@ const user = {
       email: resultData.email,
       userName: resultData.name,
       detailInfo: resultData.detail_info,
-      createTime: resultData.create_time
+      createTime: resultData.create_time,
+      nick: resultData.nick,
     }
     return userInfo
   },

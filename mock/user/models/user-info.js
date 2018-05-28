@@ -57,11 +57,12 @@ const user = {
    */
   async getUserInfoByUserName( userName ) {
 
-    let result = await dbUtils.select(
+    let arr = await dbUtils.select(
       'user_info',
       ['id', 'email', 'name', 'detail_info', 'create_time', 'modified_time', 'modified_time' ])
-    if ( Array.isArray(result) && result.length > 0 ) {
-      result = result[0]
+    if ( Array.isArray(arr) && arr.length > 0 ) {
+      // result = result[0]
+      result = arr.filter(item=>item.name==userName)[0]
     } else {
       result = null
     }

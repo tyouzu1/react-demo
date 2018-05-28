@@ -1,7 +1,5 @@
 const userInfoService = require('../services/user-info')
 const userCode = require('../server/codes/user')
-const body = require('../../userInfo/info')
-
 module.exports = {
 
   /**
@@ -22,8 +20,15 @@ module.exports = {
     if ( userResult ) {
       if ( formData.userName === userResult.name ) {
         result.success = true
-          result.data=body
-          result.code=0
+        result.data={
+          uname:  userResult.name,
+          displayname:  userResult.nick||userResult.name,
+          image: 'https://himg.bdimg.com/sys/portrait/item/79d3476f6473656e64e4b8b6e797b4e5bf838039.jpg',
+          isLogIn: true,
+          fontSize: 2,
+          token:'abcdefg'
+        }
+        result.code=0
       } else {
         result.message = userCode.FAIL_USER_NAME_OR_PASSWORD_ERROR
         result.code = 'FAIL_USER_NAME_OR_PASSWORD_ERROR'
@@ -87,6 +92,7 @@ module.exports = {
       email: formData.email,
       password: formData.password,
       name: formData.userName,
+      nick: formData.nick,
       create_time: new Date().getTime(),
       level: 1,
     })
@@ -108,22 +114,30 @@ module.exports = {
    * @param    {obejct} ctx 上下文对象
    */
   async getLoginUserInfo( ctx ) {
-    let session = ctx.session
-    let isLogin = session.isLogin
-    let userName = session.userName
-console.log(session)
-    console.log( 'session=', session )
+    // let session = ctx.session
+    // let isLogin = session.isLogin
+    // let userName = session.userName
+    let formData = ctx.request.body
+
     let result = {
       success: false,
       message: '',
-      data: body,
+      data: {},
     }
-    if ( isLogin === true && userName ) {
-      let userInfo = await userInfoService.getUserInfoByUserName( userName )
+    // console.log(isLogin,userName)
+    // if ( isLogin === true && userName ) {
+      if ( formData.userName&&formData.token ) {
+      let userInfo = await userInfoService.getUserInfoByUserName( formData.userName )
       if ( userInfo ) {
-        result.data = userInfo
+        // result.data = userInfo
         result.success = true
-          result.data= body
+          result.data= {
+            uname:  userInfo.userName,
+            displayname:  userInfo.nick||userInfo.userName,
+            image: 'https://himg.bdimg.com/sys/portrait/item/79d3476f6473656e64e4b8b6e797b4e5bf838039.jpg',
+            isLogIn: true,
+            fontSize: 2,
+          }
       } else {
         result.message = userCode.FAIL_USER_NO_LOGIN
       }

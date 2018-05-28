@@ -6,7 +6,7 @@ import './style.less'
 class Section extends React.Component {
 
     render() {
-        const {data, lsData, fixed,  setSubscribeFn} = this.props;
+        const {data, lsData, fixed,  setSubscribeFn, search} = this.props;
 
         return (
             <div className="content-section" style={this.props.style}>
@@ -18,6 +18,7 @@ class Section extends React.Component {
                                         const a = lsData.map(item => item.name);
                                         let check = a.includes(item.name);
                                         return <SectionItem item={item}
+                                                            search={search}
                                                             key={index}
                                                             fixed={fixed}
                                                             setSubscribeFn={setSubscribeFn}

@@ -8,7 +8,7 @@ class Loading extends React.Component {
         return (
             <div className="page-loading">
                 <div className="page-loading-logo-wrap">
-                    <div className="page-loading-logo">
+                    <div className="page-loading-logo">loading
                     </div>
                     <div className="page-loading-anim">
                     </div>

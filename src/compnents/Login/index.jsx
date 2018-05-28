@@ -4,7 +4,7 @@ import { hashHistory,Link } from 'react-router'
 import { connect } from 'react-redux'
 import {postSignIn} from '../../fetch/userInfo'
 import LocalStore from '../../util/localStore'
-import { BD_NEWS_WEBAPP_SHOW_IMAGE,LOGIN } from '../../config/localStoreKey'
+import { BD_NEWS_WEBAPP_SHOW_IMAGE,LOGIN,TOKEN } from '../../config/localStoreKey'
 import * as userInfoAction from '../../actions/userInfoAction';
 import BackHeader from '../BackHeader'
 import './style.less'
@@ -24,17 +24,22 @@ class Login extends React.Component {
             if(json.code===0){
                 // 把无图模式 imageMode 拼接到数据中 本地存储
                 let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
-                if (data == null) {
-                    json.imageMode = true;
+                if (data) {
                     this.props.userInfoActions.update(json.data);
+                    this.props.userInfoActions.updateImageModel(true);
                     LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
                 } else {
-                    json.imageMode = data;
+                    this.props.userInfoActions.updateImageModel(false);
                     this.props.userInfoActions.update(json.data);
                 }
-                console.log(1231231)
-                LocalStore.setItem(LOGIN, JSON.stringify(true));
-                hashHistory.push('/profile/home');
+                LocalStore.setItem(LOGIN,json.data.uname+'');
+                LocalStore.setItem(TOKEN, json.data.token+'');
+
+                if(this.props.params.back){
+                    window.history.back();
+                }else{
+                    hashHistory.push('/profile/home');
+                }
             }else {
                 alert(json.message);
             }
@@ -66,12 +71,12 @@ class Login extends React.Component {
                 >
                         <div key={1}>
                             <div className="login-container">
-                                <BackHeader  to='/profile/home'  title="登录"/>
+                                <BackHeader  to={this.props.params.back?'':'/profile/home'}  title="登录"/>
                                 <div className="login-info">
                                        <input placeholder="请输入帐号" type="text" value={this.state.name} onChange={this.handleChangeName.bind(this)}/>
                                         <input  placeholder="请输入密码" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />
                                         <input type="button" value="登录" onClick={this.handleClick.bind(this)}/>
-                                    <Link  to="/register" className="register-btn" >去注册</Link>
+                                    <Link  to={this.props.params.back?'/register/true':'/register'} className="register-btn" >去注册</Link>
                                 </div>
                             </div>
                         </div>

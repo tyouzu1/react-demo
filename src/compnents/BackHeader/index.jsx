@@ -1,5 +1,6 @@
 import React from 'react'
 import {hashHistory,Link} from 'react-router'
+
 import './style.less'
 class Back extends React.Component {
 
@@ -12,7 +13,9 @@ class Back extends React.Component {
             window.history.back();
         }
     }
-
+    handleChange=()=>{
+      this.props.btn();
+    }
     render (){
         const {title,btn} =this.props;
         return (
@@ -23,7 +26,7 @@ class Back extends React.Component {
                 </div>
                 <span className="back-title">{title?title:null}</span>
                 {
-                    btn&&<Link to="/subscribe/home" className="back-btn">完成</Link>
+                    btn&&<Link className="back-btn" onClick={this.handleChange}>完成</Link>
                 }
             </div>
 

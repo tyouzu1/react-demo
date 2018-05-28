@@ -1,6 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {hashHistory} from 'react-router'
+
+import {setCategoryData} from '../../fetch/category'
 
 import BackHeader from '../BackHeader'
 import ManageList from './subPage/ManageList'
@@ -44,11 +47,30 @@ class Manage extends React.Component {
             })
         }
     }
+    handleChange() {
+        console.log(this.props.userInfo)
+        if(this.props.userInfo.isLogIn){
+            let categoryResult = setCategoryData(this.props.category);
+            categoryResult.then(res => {
+                return res.json()
+            }).then((json) => {
+                this.props.categoryActions.update(json);
+                hashHistory.push('/subscribe/home')
+            }).catch(ex => {
+                if (__DEV__) {
+                    console.error('获取分类数据报错, ', ex.message)
+                }
+            });
+        }else{
+            hashHistory.push('/login/true')
+        }
+        
+    }
 
     render() {
         return (
             <div>
-                <BackHeader title="订阅管理" btn />
+                <BackHeader title="订阅管理" btn={this.handleChange.bind(this)} />
                 <div className="manage-subscribe-container">
                     <h3>已有<span>{this.state.lsData.length}</span>个订阅</h3>
                     {this.state.lsData&&<ManageList data={this.state.lsData} setSubscribeFn={this.setSubscribeFn.bind(this)} setLsDataOrderFn={this.setLsDataOrderFn.bind(this)}  />}
@@ -59,7 +81,8 @@ class Manage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    category:state.category
+    category:state.category,
+    userInfo:state.userInfo,
 });
 
 const mapDispatchToProps = dispatch => ({

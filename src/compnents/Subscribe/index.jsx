@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import {setCategoryData} from '../../fetch/category'
+
 import BackHeader from '../BackHeader'
 import Section from './subPage/Section'
 import * as categoryAction from '../../actions/categoryAction';
@@ -102,10 +104,29 @@ class Subscribe extends React.Component {
         })
     }
 
+    handleChange(data) {
+        let categoryResult = setCategoryData(data);
+        categoryResult.then(res => {
+            return res.json()
+        }).then((json) => {
+            this.props.categoryActions.update(json);
+        }).catch(ex => {
+            if (__DEV__) {
+                console.error('获取分类数据报错, ', ex.message)
+            }
+        });
+    }
+
+
     setSubscribeFn(data,model) {
+        console.log(data,2121122)
         let newData = [].concat(this.state.lsData);
         if(model){
-            newData.push(data);
+            // if(data.type="chosen"){
+                // newData.unshift(data);
+            // }else{
+                newData.push(data);
+            // }
         }else if(!model){
             newData = newData.filter(item=>
                 item.name!==data.name
@@ -118,7 +139,8 @@ class Subscribe extends React.Component {
             tag: newData,
             push: []
         }
-        this.props.categoryActions.update(categoryData);
+        this.handleChange(categoryData);
+        // this.props.categoryActions.update(categoryData);
     }
 
     render() {

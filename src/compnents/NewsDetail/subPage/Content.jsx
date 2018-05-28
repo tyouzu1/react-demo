@@ -1,7 +1,10 @@
 import React from 'react'
+import { hashHistory } from 'react-router'
 
 import './style.less'
 import LocalStore from '../../../util/localStore'
+import {getNewsLike} from '../../../fetch/news'
+
 import {FONT_SIZE} from '../../../config/localStoreKey'
 
 class Content extends React.Component {
@@ -9,7 +12,8 @@ class Content extends React.Component {
     state = {
         showFontSet: false,
         showMore: true,
-        like:false
+        like:this.props.data.like.like,
+        count:this.props.data.like.count,
     }
 
     handleShow() {
@@ -19,14 +23,47 @@ class Content extends React.Component {
     }
 
     handleOpen() {
-        this.setState({
-            showMore: false
-        });
+            this.setState({
+                showMore: false
+            });
+      
     }
     handleLike(){
-     this.setState({
-         like:true
-     })
+        if(this.props.login){
+            if(this.state.like){
+                let result = getNewsLike(this.props.data.nid,0);
+                result.then(res => {
+                    return res.json()
+                }).then((json) => {
+                    this.setState({
+                        like:json.data.like,
+                        count:json.data.count,
+                    })
+                }).catch(ex => {
+                    if (__DEV__) {
+                        console.error('获取user数据报错, ', ex.message)
+                    }
+                });
+               
+            }else{
+                let result = getNewsLike(this.props.data.nid,1);
+                result.then(res => {
+                    return res.json()
+                }).then((json) => {
+                    this.setState({
+                        like:json.data.like,
+                        count:json.data.count,
+                    })
+                }).catch(ex => {
+                    if (__DEV__) {
+                        console.error('获取user数据报错, ', ex.message)
+                    }
+                });
+            }
+            
+        }else{
+            hashHistory.push('/login/true')
+        }
     }
     static time(time) {
         let date = new Date(time);//如果date为13位不需要乘1000
@@ -49,7 +86,7 @@ class Content extends React.Component {
                         <div className="detail-content-header">
                             <h2>{data.abs}</h2>
                             <div className="header-info">
-                                <span>{data.site}</span>
+                                <span>{data.site.substring(0,10)}</span>
                                 <span style={{marginLeft: '8px'}}>{Content.time(parseInt(data.sourcets))}</span>
                                 <div className="info-group">
                                     <div className="info-group-item info-group-font" onClick={() => this.handleShow()}>
@@ -99,7 +136,8 @@ class Content extends React.Component {
                                 href={data.url}>查看原文 &gt;</a>
                             </div>
                             <div className={"float-right"+(this.state.like?' uping':'')} onClick={()=>this.handleLike()}>
-                                <span className={"up-container"+(this.state.like?' clicked':'')}>{this.state.like?(18+1):18}</span>
+                                <span className={"up-container"+(this.state.like?' clicked':'')}>{this.state.count}
+                                </span>
                                 <span className="up-plus1">+1</span></div>
                         </div>
                         <div className="show-more-end">

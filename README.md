@@ -1,4 +1,4 @@
-## react-demo
+## react新闻app
 
 #### 先安装node.js（自动捆绑npm），安装完成在命令行内执行node -v，查看版本，执行npm -v，查看npm版本
 

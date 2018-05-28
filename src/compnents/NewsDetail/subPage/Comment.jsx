@@ -4,10 +4,18 @@ import {hashHistory} from 'react-router'
 import './style.less'
 class Comment extends React.Component {
     handleFavor(){
-        this.props.favorFn();
+        if(this.props.login){
+            this.props.favorFn();
+        }else{
+            hashHistory.push('/login/true')
+        }
     }
     handleClick(){
-        hashHistory.push('/comment/'+this.props.id)
+        if(this.props.login){
+            hashHistory.push('/comment/'+this.props.id)
+        }else{
+            hashHistory.push('/login/true')
+        }
     }
     render() {
         return (

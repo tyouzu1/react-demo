@@ -43,23 +43,32 @@ class CommentDetail extends React.Component {
         this.fetchData(this.props.params.id);
     }
     handleClick(){
-        let id = this.props.params.id;
         let text = this.state.text;
-        let result = postNewsCommentData(id,text);
+        if(text){
+            let id = this.props.params.id;
+            this.fetchComment(id,text)
+        }else{
+            alert("不能发送空的消息")
+        }
+    }
+    fetchComment(id,text){
+        let data = {
+            id:id,
+            text:text,
+            ts:Date.parse(new Date()),
+            support_count:0,
+            user_pic:this.props.userInfo.image,
+            user_name:this.props.userInfo.displayname
+        }
+        let result = postNewsCommentData(id,data);
         result.then(res => {
             return res.json()
         }).then((json) => {
            alert(json.data)
             if(json.success){
                this.setState({
-                   data:[{
-                       id:id,
-                       text:text,
-                       ts:Date.parse(new Date()),
-                       support_count:0,
-                       user_pic:this.props.userInfo.image,
-                       user_name:this.props.userInfo.displayname
-                   }].concat(this.state.data)
+                   data:[data].concat(this.state.data),
+                   text:''
                })
             }
         }).catch(ex => {
@@ -75,18 +84,12 @@ class CommentDetail extends React.Component {
     }
 
     handleSent(text){
-        console.log(text)
-        //TODO fetch 回复
-        this.setState({
-            data:[{
-                id:this.props.params.id,
-                text:text,
-                ts:Date.parse(new Date()),
-                support_count:0,
-                user_pic:this.props.userInfo.image,
-                user_name:this.props.userInfo.displayname
-            }].concat(this.state.data)
-        })
+        if(text){
+            let id = this.props.params.id;
+            this.fetchComment(id,text)
+        }else{
+            alert("不能发送空的消息")
+        }
     }
 
     render() {
@@ -119,7 +122,10 @@ class CommentDetail extends React.Component {
                         </div>
                     </div>
                 </div>
-                <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.handleLoadMore.bind(this)}/>
+                {this.state.hasMore
+                    ?<LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.handleLoadMore.bind(this)}/>
+                    : <div className="load-more">没有更多了...</div>
+                }
             </div>
         )
     }
