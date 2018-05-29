@@ -6,6 +6,11 @@ export function getCarouselNewsData(type) {
     return result;
 }
 
+export function getSearchNewsData(key) {
+    const result = get('/api/search/'+key);
+    return result;
+}
+
 export function getNewsData(type) {
     const result = get('/api/news/'+type);
     return result;

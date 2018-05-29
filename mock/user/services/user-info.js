@@ -18,6 +18,17 @@ const user = {
     return result
   },
 
+   /**
+   * 修改用户信息
+   * @param  {object} user 用户信息
+   * @param  {object} id   用户ID标记
+   * @return {object}      创建结果
+   */
+  async update( user, id ) {
+    let result = await userModel.update( user , id )
+    return result
+  },
+
   /**
    * 查找存在用户信息
    * @param  {object} formData 查找的表单数据
@@ -53,10 +64,10 @@ const user = {
     
     let resultData = await userModel.getUserInfoByUserName( userName ) || {}
     let userInfo = {
-      // id: resultData.id,
+      id: resultData.id,
       email: resultData.email,
       userName: resultData.name,
-      detailInfo: resultData.detail_info,
+      detail_info: resultData.detail_info,
       createTime: resultData.create_time,
       nick: resultData.nick,
     }

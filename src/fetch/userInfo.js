@@ -26,6 +26,16 @@ export function postSignUp(obj) {
     return result;
 }
 
+export function postUserUpdate(obj) {
+    const result = post('/api/userUpdate', {
+        id:obj.id,
+        password:obj.password,
+        detail_info:obj.detail_info,
+        nick:obj.nick,
+    });
+    return result;
+}
+
 export function postSignIn(obj) {
     const result = post('/api/signIn', {
         userName:obj.name,

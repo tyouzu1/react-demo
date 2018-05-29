@@ -13,6 +13,16 @@ const user = {
   },
 
   /**
+   * 数据库修改帐号信息
+   * @param  {object} model 用户数据模型
+   * @return {object}       mysql执行结果
+   */
+  async update ( model, id ) {
+    let result = await dbUtils.updateData( 'user_info', model, id)
+    return result
+  },
+
+  /**
    * 查找一个存在用户的数据
    * @param  {obejct} options 查找条件参数
    * @return {object|null}        查找结果
@@ -59,7 +69,7 @@ const user = {
 
     let arr = await dbUtils.select(
       'user_info',
-      ['id', 'email', 'name', 'detail_info', 'create_time', 'modified_time', 'modified_time' ])
+      ['id', 'email', 'name','nick', 'detail_info', 'create_time', 'modified_time', 'modified_time' ])
     if ( Array.isArray(arr) && arr.length > 0 ) {
       // result = result[0]
       result = arr.filter(item=>item.name==userName)[0]

@@ -7,6 +7,7 @@ import Home from '../compnents/Home'
 import Profile from '../compnents/Profile'
 import Notice from '../compnents/Profile/subPage/Notice'
 import Favor from '../compnents/Profile/subPage/Favor'
+import Update from '../compnents/Profile/subPage/Update'
 import NotFound from '../compnents/404'
 import NewsDetail from '../compnents/NewsDetail'
 import Subscribe from '../compnents/Subscribe'
@@ -29,6 +30,7 @@ class RouterMap extends React.Component {
                     <Route path='/profile/home' component={Profile}/>
                     <Route path='/profile/notice' component={Notice}/>
                     <Route path='/profile/favor' component={Favor}/>
+                    <Route path='/profile/update' component={Update}/>
                     <Route path='/subscribe/home' component={Subscribe}/>
                     <Route path='/subscribe/manage' component={Manage}/>
                     <Route path='/subscribe/search' component={Search}/>

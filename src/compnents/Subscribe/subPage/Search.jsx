@@ -78,7 +78,7 @@ class Search extends React.Component {
         let {searchKey,show} = this.state
         return (
             <div>
-                <BackHeader title="搜索订阅" btn />
+                <BackHeader title="搜索订阅"  />
                 <div className="search-page-container">
                     <div className="search-page">
                         <form >

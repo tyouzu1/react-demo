@@ -243,6 +243,30 @@ page.get('/nav', async (ctx) => {
             "notice": notice
         }
     }
+}).get('/search/:key', async (ctx) => {
+    const params = ctx.params
+    const key = params.key
+    const list = newsData.data.news.filter(item=>{
+        return  item.title.indexOf(key)!=-1
+    })
+    const list2 = newsData2.data.news.filter(item=>{
+        return  item.title.indexOf(key)!=-1
+    })
+    const list3 = newsData3.data.news.filter(item=>{
+        return  item.title.indexOf(key)!=-1
+    })
+    const list4 = newsData4.data.news.filter(item=>{
+        return  item.title.indexOf(key)!=-1
+    })
+    console.log(list.length,list2.length,list3.length,list4.length)
+    ctx.body =  {
+        "errno": 0,
+        "request_id": "0350931988",
+        "timestamp": 1515744351,
+        "data": {
+            "news": [...list,...list2,...list3,...list4]
+        }
+    }
 })
 
 let a = false;
@@ -384,6 +408,7 @@ const userInfoController = require('./user/controllers/user-info')
 page.post('/getUserInfo', koaBody(), userInfoController.getLoginUserInfo)
     .post('/signIn', koaBody(), userInfoController.signIn)
     .post('/signUp', koaBody(), userInfoController.signUp)
+    .post('/userUpdate', koaBody(), userInfoController.update)
 
 // session存储配置
 const sessionMysqlConfig = {

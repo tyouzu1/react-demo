@@ -52,19 +52,18 @@ class NavBar extends React.Component {
         return (
             <div className="nav-header">
                 <div className="nav-header-container clear-fix">
-                    <a href='/'>
-                        <i className="icon-home float-left">
-                        </i>
-                    </a>
-
                     <Link to='/profile/home'>
-                        <i className="icon-user float-left">
+                        <i className="icon-user float-right">
+                        </i>
+                    </Link>
+                    <Link to='/'>
+                        <i className="icon-home float-right">
                         </i>
                     </Link>
                     <span className="nav-text">热搜新闻<span onAnimationEnd={this.handleReset} className={this.state.rotate?"nav-btn rotate":"nav-btn"} onClick={this.handleAni} ></span></span>
-                    <Link to='/subscribe/home'><i className="icon-plus float-right"></i> </Link>
+                    <Link to='/subscribe/home'><i className="icon-bookmarks float-left"></i> </Link>
                     <Link to='/searchpage/home'>
-                        <i className="icon-search float-right">
+                        <i className="icon-search float-left">
                         </i>
                     </Link>
                 </div>

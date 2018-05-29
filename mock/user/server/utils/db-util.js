@@ -55,6 +55,7 @@ let insertData = function( table, values ) {
 
 
 let updateData = function( table, values, id ) {
+  console.log(values,'values')
   let _sql = "UPDATE ?? SET ? WHERE id = ?"
   return query( _sql, [ table, values, id ] )
 }
