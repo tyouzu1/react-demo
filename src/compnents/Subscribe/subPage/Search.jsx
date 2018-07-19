@@ -91,7 +91,7 @@ class Search extends React.Component {
                 <div className="search-news-container" style={{display:show?'':'none'}}>
                     <Link className="search-news" to={"/searchpage/home/"+searchKey}>搜索“<span>{searchKey}</span>”的相关新闻</Link>
                 </div>
-                <div style={{padding:'5px 15px'}}>
+                <div className="search-subscribe-container" >
                         <Section data={this.state.tagList} lsData={this.state.lsData}
                                     search
                                  setSubscribeFn={this.setSubscribeFn.bind(this)}/>

@@ -38,15 +38,20 @@ class App extends React.Component {
         userResult.then(res => {
             return res.json()
         }).then((json) => {
-            // 把无图模式 imageMode 拼接到数据中 本地存储
-            let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
-            if (data == null) {
-                json.data.imageMode = true;
-                this.props.userInfoActions.update(json.data);
+            if(json.success){
+                // 把无图模式 imageMode 拼接到数据中 本地存储
+                let data = JSON.parse(LocalStore.getItem(BD_NEWS_WEBAPP_SHOW_IMAGE));
+                if (data == null) {
+                    json.data.imageMode = true;
+                    this.props.userInfoActions.update(json.data);
+                    LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
+                } else {
+                    json.data.imageMode = data;
+                    this.props.userInfoActions.update(json.data);
+                }
+            }else{
+                LocalStore.removeItem(LOGIN);
                 LocalStore.setItem(BD_NEWS_WEBAPP_SHOW_IMAGE, JSON.stringify(true));
-            } else {
-                json.data.imageMode = data;
-                this.props.userInfoActions.update(json.data);
             }
             // 更改状态
             this.setState({

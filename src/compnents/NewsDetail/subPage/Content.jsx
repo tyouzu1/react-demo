@@ -84,7 +84,7 @@ class Content extends React.Component {
                 <div className="detail-content-container">
                     <div className="detail-content-main">
                         <div className="detail-content-header">
-                            <h2>{data.abs}</h2>
+                            <h2>{data.title}</h2>
                             <div className="header-info">
                                 <span>{data.site.substring(0,10)}</span>
                                 <span style={{marginLeft: '8px'}}>{Content.time(parseInt(data.sourcets))}</span>

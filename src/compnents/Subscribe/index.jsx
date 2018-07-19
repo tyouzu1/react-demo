@@ -23,12 +23,12 @@ class Subscribe extends React.Component {
         tagList: [],
         index: 0
     }
-
-
-    componentWillMount() {
+    componentDidMount() {
         this.fetchData(1);
+        this.setState({
+            index: 1
+        })
     }
-
     mediaData(index) {
         let result = postSubscribeData('媒体', index);
         result.then(res => {
@@ -84,11 +84,7 @@ class Subscribe extends React.Component {
         });
     }
 
-    componentDidMount() {
-        this.setState({
-            index: 1
-        })
-    }
+
 
     handleClick() {
         if (this.state.index === 1) {

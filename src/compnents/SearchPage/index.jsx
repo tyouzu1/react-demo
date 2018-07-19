@@ -13,7 +13,7 @@ import './style.less'
 class SearchPage extends React.Component {
     state = {
         searchKey: this.props.params.key,
-        list:[]
+        list:null
     }
     componentDidMount(){
         console.log(this.props)
@@ -86,7 +86,9 @@ class SearchPage extends React.Component {
                         </a>
                         </div>
                     </div>
-                    {this.state.list.length?<NewsList data={this.state.list} imageMode={imageMode}/>:null}
+                    {this.state.list&&this.state.list.length
+                        ?<NewsList data={this.state.list} imageMode={imageMode}/>
+                        :null}
                 </div>
 
             </ReactCSSTransitionGroup>

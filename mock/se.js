@@ -76,7 +76,6 @@ page.get('/nav', async (ctx) => {
                 "nid": params.id,
                 "sourcets": "1515466817000",
                 "ts": "1515466999000",
-                "title": "id为" + params.id + "的新闻标题",
                 "url": "http:\/\/news.cctv.com\/2018\/01\/09\/ARTIY39UfcwYdRxfSGIhFvwM180109.shtml",
                 "imageurls": [{
                     "url": "https:\/\/imgsa.baidu.com\/news\/q%3D100\/sign=53a24ca2952f070859052e00d925b865\/f7246b600c3387443f8c71915a0fd9f9d62aa096.jpg",
@@ -84,9 +83,7 @@ page.get('/nav', async (ctx) => {
                     "width": 900,
                     "url_webp": "https:\/\/timg01.bdimg.com\/timg?news&quality=80&size=f900_700&wh_rate=0&imgtype=4&sec=0&di=87d2481988501e23128b5a32c8580dfd&er=1&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fnews%2Fq%3D100%2Fsign%3D53a24ca2952f070859052e00d925b865%2Ff7246b600c3387443f8c71915a0fd9f9d62aa096.jpg"
                 }],
-                "site": params.id,
                 "type": "text",
-                "abs": "id为" + params.id + "的新闻标题",
                 "display_type": 1,
                 "display_url": "http:\/\/news.cctv.com\/2018\/01\/09\/ARTIY39UfcwYdRxfSGIhFvwM180109.shtml",
                 "topic": [],
@@ -121,37 +118,36 @@ page.get('/nav', async (ctx) => {
                 { "type": "text", "data": "<span>id为" + params.id + "的新闻内容<\/span>" },
                 ],
                 "content_type": { "text": 1 },
-                "comment": { "count": 2 },
+                "comment": { "count": 0 },
                 "like": { "count": 0, "like": false },
                 "comments": {
                     "hasmore": 0,
-                    "comments": [{
-                        "user_name": "用户1",
-                        "user_pic": "https://gss0.bdstatic.com/7Ls0a8Sm1A5BphGlnYG/sys/portrait/item/6f8d616263e69d9ce9be9935353fb7.jpg",
-                        "user_type": "0",
-                        "support_count": "3",
-                        "ts": 1515705467000,
-                        "id": "884173988",
-                        "text": "id为" + params.id + "的新闻评论",
-                        "from": "", "reply_user_name": "", "is_reply": "0"
-                    },
-                    {
-                        "user_name": "用户2",
-                        "user_pic": "https://gss0.bdstatic.com/7Ls0a8Sm1A5BphGlnYG/sys/portrait/item/7de2e58589e6a38de69d80e5ae98e591983595.jpg",
-                        "user_type": "0",
-                        "support_count": "3",
-                        "ts": 1515694111000,
-                        "id": "884088014",
-                        "text": "id为" + params.id + "的新闻评论",
-                        "from": "",
-                        "reply_user_name": "",
-                        "is_reply": "0"
-                    }],
-                    "vip_comments": [],
-                    "hot_comments": []
+                    "comments": [],
                 },
                 "token": "e51f9024"
             }
+            const list = [...newsData.data.news,...newsData.data.top,...newsData.data.toppic].filter(item=>{
+                return  item.nid==params.id
+            })
+            const list2 =  [...newsData2.data.news,...newsData2.data.top,...newsData2.data.toppic].filter(item=>{
+                return  item.nid==params.id
+            })
+            const list3 =  [...newsData3.data.news,...newsData3.data.top,...newsData3.data.toppic].filter(item=>{
+                return  item.nid==params.id
+            })
+            const list4 =  [...newsData4.data.news,...newsData4.data.top,...newsData4.data.toppic].filter(item=>{
+                return  item.nid==params.id
+            })
+            console.log([...list,...list2,...list3,...list4].length)
+            let selected = [...list,...list2,...list3,...list4][0]
+            // detail.comment={count:0};
+            // detail.comments={hasmore:0,comments:[]};
+            // detail.content = [{"type": "text", "data": "<b>\u539f\u6807\u9898\uff1a<\/b>"}]
+            // detailArr.push(detail)
+            detail.title=selected.title
+            detail.abs=selected.title
+            detail.site=selected.site
+
             detailArr.push(detail)
             ctx.body = {
                 "errno": 0,
@@ -298,6 +294,12 @@ page.post('/addNews', koaBody(), async (ctx) => {
     const id = ctx.request.body.id;
     const key = ctx.request.body.key;
     if (parseInt(id) == 4) {
+        const list1 = subscribe.data.media.filter(item=>item.name.indexOf(key)!=-1);
+        const list2 = subscribe2.data.tag.filter(item=>item.name.indexOf(key)!=-1);
+        const list3 = subscribe3.data.channel.filter(item=>item.name.indexOf(key)!=-1);
+        const list4 = subscribe4.data.media.filter(item=>item.name.indexOf(key)!=-1);
+        const list5 = subscribe5.data.tag.filter(item=>item.name.indexOf(key)!=-1);
+
         ctx.body = {
             "errno":
                 0, "request_id":
@@ -305,7 +307,7 @@ page.post('/addNews', koaBody(), async (ctx) => {
                 1515380088, "data":
                 {
                     "tag":
-                        [{ "id": "999", "name": key, "type": "tag" }]
+                        [{ "id": "999", "name": key, "type": "tag" },...list1,...list2,...list3,...list4,...list5]
                 }
         }
     } else if (parseInt(id) === 1) {

@@ -30,7 +30,7 @@ export function postUserUpdate(obj) {
     const result = post('/api/userUpdate', {
         id:obj.id,
         password:obj.password,
-        detail_info:obj.detail_info,
+        avatar:obj.avatar,
         nick:obj.nick,
     });
     return result;

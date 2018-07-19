@@ -35,7 +35,7 @@ class Update extends React.Component {
         if(this.props.userInfo.isLogIn&&this.props.userInfo.id){
             let paramsObj = {
                 nick:this.state.nick,
-                detail_info:this.state.avatar,
+                avatar:this.state.avatar,
                 password:this.state.password,
                 id:this.props.userInfo.id,
             }
@@ -49,7 +49,7 @@ class Update extends React.Component {
                         ...this.props.userInfo
                     }
                     params.displayname = paramsObj.nick;
-                    params.image = paramsObj.detail_info;
+                    params.image = paramsObj.avatar;
                     this.props.userInfoActions.update(params);
                     hashHistory.push('/profile/home')
                 }else{
@@ -120,7 +120,7 @@ class Update extends React.Component {
                 >
                     <div key={1}>
                         <div className="update-container">
-                            <BackHeader to='/profile/home' title="登录" />
+                            <BackHeader to='/profile/home' title="修改信息" />
                             <div className="login-info">
                                 <input placeholder="请输入新的昵称" type="text" value={this.state.nick} onChange={this.handleChangeNick.bind(this)} />
                                 <input placeholder="请输入新的密码" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />

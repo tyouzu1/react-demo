@@ -24,7 +24,7 @@ module.exports = {
           id:userResult.id,
           uname: userResult.name,
           displayname: userResult.nick || userResult.name,
-          image:  userResult.detail_info||null,
+          image:  userResult.avatar||null,
           isLogIn: true,
           fontSize: 2,
           token: 'abcdefg'
@@ -130,14 +130,14 @@ module.exports = {
     if (formData.userName && formData.token) {
       let userInfo = await userInfoService.getUserInfoByUserName(formData.userName)
       console.log(userInfo)
-      if (userInfo) {
+      if (userInfo.id) {
         // result.data = userInfo
         result.success = true
         result.data = {
           id:userInfo.id,
           uname: userInfo.userName,
           displayname: userInfo.nick || userInfo.userName,
-          image: userInfo.detail_info||null,
+          image: userInfo.avatar||null,
           isLogIn: true,
           fontSize: 2,
         }
@@ -184,7 +184,7 @@ module.exports = {
       code: ''
     }
     let params = {
-      detail_info:formData.detail_info
+      avatar:formData.avatar
     }
     if(formData.password){
       params.password=formData.password

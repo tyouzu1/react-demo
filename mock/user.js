@@ -59,7 +59,7 @@ async getUserInfoByUserName( userName ) {
 
     let result = await dbUtils.select(
         'user_info',
-        ['id', 'email', 'name', 'detail_info', 'create_time', 'modified_time', 'modified_time' ])
+        ['id', 'email', 'name', 'avatar', 'create_time', 'modified_time', 'modified_time' ])
     if ( Array.isArray(result) && result.length > 0 ) {
         result = result[0]
     } else {

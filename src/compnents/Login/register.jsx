@@ -75,9 +75,9 @@ class Register extends React.Component {
                         <div className="login-container">
                             <BackHeader  to={this.props.params.back?'':'/profile/home'} title="注册"/>
                             <div className="login-info">
-                                <input placeholder="请输入帐号" type="text" value={this.state.name} onChange={this.handleChangeName.bind(this)}/>
+                                <input placeholder="请输入帐号(至少6位)" type="text" value={this.state.name} onChange={this.handleChangeName.bind(this)}/>
                                 <input placeholder="请输入昵称" type="text" value={this.state.nick} onChange={this.handleChangeNick.bind(this)}/>
-                                <input  placeholder="请输入密码" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />
+                                <input  placeholder="请输入密码(至少6位)" type="password" value={this.state.password} onChange={this.handleChangePwd.bind(this)} />
                                 <input placeholder="请再次输入你的密码" type="password" value={this.state.confirmPassword} onChange={this.handleChangeCPwd.bind(this)}/>
                                 <input  placeholder="请输入邮箱" type="email" value={this.state.email} onChange={this.handleChangeEmail.bind(this)} />
                                 <input type="button" value="注册" onClick={this.handleClick.bind(this)}/>

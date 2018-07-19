@@ -69,7 +69,7 @@ const user = {
 
     let arr = await dbUtils.select(
       'user_info',
-      ['id', 'email', 'name','nick', 'detail_info', 'create_time', 'modified_time', 'modified_time' ])
+      ['id', 'email', 'name','nick', 'avatar', 'create_time', 'modified_time', 'modified_time' ])
     if ( Array.isArray(arr) && arr.length > 0 ) {
       // result = result[0]
       result = arr.filter(item=>item.name==userName)[0]

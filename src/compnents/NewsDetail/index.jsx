@@ -39,6 +39,7 @@ class NewsDetail extends React.Component {
         result.then(res => {
             return res.json()
         }).then((json) => {
+            console.log(json.data.news)
             this.setState({
                 data: json.data.news,
                 fontSize: fontSize,
